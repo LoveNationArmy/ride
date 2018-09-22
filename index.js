@@ -4,4 +4,6 @@ const app = express()
 app.get('/', (req, res) => {
   res.send('Hello')
 })
-app.listen(8080, () => console.log('Server started'))
+app.listen(process.env.PORT || 8080, () =>
+  console.log('Server started')
+)
