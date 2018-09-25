@@ -1,0 +1,23 @@
+{
+  "name": "now-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "now --public --docker"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmmrtns/now-test.git"
+  },
+  "author": "Fernando Martins<me@fernandomartins.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fmmrtns/now-test/issues"
+  },
+  "homepage": "https://github.com/fmmrtns/now-test#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
