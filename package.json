@@ -1,23 +1,17 @@
 {
-  "name": "now-test",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "deploy": "now --public --docker"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fmmrtns/now-test.git"
-  },
-  "author": "Fernando Martins<me@fernandomartins.net>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/fmmrtns/now-test/issues"
-  },
-  "homepage": "https://github.com/fmmrtns/now-test#readme",
+  "name": "ride",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "express": "^4.16.3"
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy": "now"
   }
 }
