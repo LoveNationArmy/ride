@@ -1,17 +1,14 @@
 {
-  "name": "ride",
-  "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4"
+  "workspaces": {
+    "packages": ["web", "api"],
+    "nohoist": ["@ride/web/**"]
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deploy": "now"
+    "clean": "rm -rf node_modules yarn.lock web/node_modules api/node_modules",
+    "api:start": "yarn workspace @ride/api start",
+    "api:deploy": "cp yarn.lock api/ && yarn workspace @ride/api deploy",
+    "web:start": "yarn workspace @ride/web start",
+    "web:deploy": "cp yarn.lock web/ && yarn workspace @ride/web deploy"
   }
 }

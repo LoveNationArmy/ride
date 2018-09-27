@@ -1,0 +1,14 @@
+{
+  "name": "@ride/api",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "main": "./server.js",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "deploy": "now"
+  }
+}
