@@ -1,8 +1,7 @@
 {
   "private": true,
   "workspaces": {
-    "packages": ["web", "api"],
-    "nohoist": ["@ride/web/**"]
+    "packages": ["web", "api"]
   },
   "scripts": {
     "clean": "rm -rf node_modules yarn.lock web/node_modules api/node_modules",
