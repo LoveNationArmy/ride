@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "deploy": "now"
+    "deploy": "now",
+    "test": "exit 0"
   }
 }

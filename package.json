@@ -7,7 +7,9 @@
     "clean": "rm -rf node_modules yarn.lock web/node_modules api/node_modules",
     "api:start": "yarn workspace @ride/api start",
     "api:deploy": "cp yarn.lock api/ && yarn workspace @ride/api deploy",
+    "api:test": "yarn workspace @ride/api test",
     "web:start": "yarn workspace @ride/web start",
-    "web:deploy": "cp yarn.lock web/ && yarn workspace @ride/web deploy"
+    "web:deploy": "cp yarn.lock web/ && yarn workspace @ride/web deploy",
+    "web:test": "yarn workspace @ride/web test"
   }
 }
