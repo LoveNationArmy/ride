@@ -1,0 +1,17 @@
+{
+  "type": "static",
+  "public": true,
+  "build": {
+    "env": {
+      "CI": "true"
+    }
+  },
+  "static": {
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
