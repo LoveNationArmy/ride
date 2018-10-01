@@ -24,6 +24,12 @@ To run the Web (frontend) server:
 yarn web:start
 ```
 
+To test the code:
+```sh
+yarn api:test
+yarn web:test
+```
+
 To deploy these two servers with **now**:
 
 ```sh
