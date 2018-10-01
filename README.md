@@ -1,5 +1,7 @@
 # ride
 
+[![Build Status](https://semaphoreci.com/api/v1/lovenationarmy/ride/branches/master/badge.svg)](https://semaphoreci.com/lovenationarmy/ride)
+
 Ride sharing platform.
 
 ## Getting started
@@ -25,6 +27,7 @@ yarn web:start
 ```
 
 To test the code:
+
 ```sh
 yarn api:test
 yarn web:test
