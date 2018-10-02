@@ -11,5 +11,9 @@
     "web:start": "yarn workspace @ride/web start",
     "web:deploy": "cp yarn.lock web/ && yarn workspace @ride/web deploy",
     "web:test": "yarn workspace @ride/web test"
+  },
+  "engines": {
+    "node": ">=10.10",
+    "yarn": ">=1.9"
   }
 }
