@@ -13,7 +13,8 @@
     "api:test": "yarn workspace @ride/api test",
     "web:start": "yarn workspace @ride/web start",
     "web:deploy": "cp yarn.lock web/ && yarn workspace @ride/web deploy",
-    "web:test": "yarn workspace @ride/web test"
+    "web:test": "yarn workspace @ride/web test",
+    "web:test:watch": "yarn workspace @ride/web test:watch"
   },
   "engines": {
     "node": ">=10.10",
