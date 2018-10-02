@@ -1,5 +1,5 @@
 {
     "hooks": {
-      "pre-commit": "standard --fix --verbose"
+      "pre-commit": "standard --fix --verbose | snazzy"
     }
   }
