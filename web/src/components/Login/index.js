@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import state from '../../state'
 import {
   CSRF_TOKEN,
   FACEBOOK
@@ -21,9 +20,14 @@ export default class Login extends Component {
 
     // user has signed in, ask backend for access token
     const loginResponse = await fetch(`http://localhost:3001/login?code=${params.get('code')}`)
-    const profile = await loginResponse.json()
+    const fbUser = await loginResponse.json()
 
-    state.user.profile = profile
+    localStorage.user = JSON.stringify({
+      id: fbUser.id,
+      fullName: fbUser.fullName,
+      avatarImageUrl: fbUser.avatarImageUrl
+    })
+
     this.forceUpdate()
   }
 
@@ -38,7 +42,7 @@ export default class Login extends Component {
   }
 
   logout = () => {
-    delete state.user.profile
+    delete localStorage.user
     this.forceUpdate()
   }
 
@@ -51,13 +55,15 @@ export default class Login extends Component {
   }
 
   render () {
-    return !state.user.profile
+    let user = localStorage.user
+    if (user) user = JSON.parse(localStorage.user)
+    return !user
       ? <button onClick={this.login}>
           Enter using Facebook
         </button>
       : <div>
-          Welcome, {state.user.profile.fullName}<br />
-          <img src={state.user.profile.avatarImageUrl} /><br />
+          Welcome, {user.fullName}<br />
+          <img src={user.avatarImageUrl} alt={`Avatar of ${user.fullName}`} /><br />
           <button onClick={this.logout}>
             Logout
           </button>
