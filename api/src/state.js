@@ -8,10 +8,14 @@ const {
 
 class State {
   constructor () {
-    this._load().catch(() => this._reset())
+    this.load().catch(() => this.reset())
   }
 
-  _load () {
+  get () {
+    return this.data
+  }
+
+  load () {
     debug('loading ...')
     return fetch(`${DB_URL}/${DB_NAME}/load?token=${DB_TOKEN}`)
       .then(res => res.json())
@@ -21,7 +25,7 @@ class State {
       })
   }
 
-  _save () {
+  save () {
     debug('saving ...')
     return fetch(`${DB_URL}/${DB_NAME}/save?token=${DB_TOKEN}`, {
       headers: { 'Content-Type': 'application/json' },
@@ -34,7 +38,7 @@ class State {
       })
   }
 
-  _reset () {
+  reset () {
     debug('resetting ...')
     return fetch(`${DB_URL}/${DB_NAME}/reset?token=${DB_TOKEN}`, {
       method: 'POST',

@@ -1,2 +1,3 @@
 exports.login = require('./login')
-exports.offers = require('./offers')
+exports.queries = require('./queries')
+exports.mutations = require('./mutations')
