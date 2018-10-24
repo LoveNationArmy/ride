@@ -13,9 +13,12 @@ app.use(middleware.cors)
 
 // routes
 app.get('/login', routes.login)
-app.post('/methods/reset', routes.methods.reset)
-app.get('/methods/listEntries', routes.methods.listEntries)
-app.post('/methods/addEntry', json(), routes.methods.addEntry)
+
+// offers
+app.post('/offers/reset', routes.offers.reset)
+app.get('/offers', routes.offers.list)
+app.post('/offers', json(), routes.offers.add)
+app.delete('/offers/:id', routes.offers.remove)
 
 // start server when running from the cli (using `node server.js`)
 // istanbul ignore if because we can't instrument coverage for cli usage(?)
