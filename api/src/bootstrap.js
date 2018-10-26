@@ -14,7 +14,7 @@ debug('ensuring environment variables')
   'DB_NAME',
   'FB_API_URL',
   'FB_APP_ID',
-  'FB_APP_SECRET',
+  'FB_APP_SECRET'
 ].forEach(key => assert(key in env, `Environment variable missing: "${key}"
 Environment "${env.NODE_ENV}" has not been configured properly.
 Please contact a team member for assistance.`))

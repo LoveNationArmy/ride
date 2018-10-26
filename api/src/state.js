@@ -41,7 +41,7 @@ class State {
   reset () {
     debug('resetting ...')
     return fetch(`${DB_URL}/${DB_NAME}/reset?token=${DB_TOKEN}`, {
-      method: 'POST',
+      method: 'POST'
     }).then(res => res.json())
       .then(data => {
         debug('resetted', data)

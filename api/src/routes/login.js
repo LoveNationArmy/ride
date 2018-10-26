@@ -5,7 +5,7 @@ const {
   WEB_CLIENT_ORIGIN,
   FB_API_URL,
   FB_APP_ID,
-  FB_APP_SECRET,
+  FB_APP_SECRET
 } = process.env
 
 module.exports = async (req, res) => {

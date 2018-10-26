@@ -23,7 +23,7 @@ const fixtures = {
       departure: 'Σούγια',
       arrival: 'Χανιά',
       vehicle: 'Hyundai Accent XNZ 3423'
-    },
+    }
   ]
 }
 
@@ -40,7 +40,7 @@ const expected = {
     {
       id: '2018-10-18/1830/soygia/xania/hyundai-accent-xnz-3423',
       ...fixtures.offers[2]
-    },
+    }
   ]
 }
 

@@ -11,7 +11,7 @@ class App extends Component {
           <img src={logo} className='App-logo' alt='logo' />
           <h1 className='App-title'>ride</h1>
         </header>
-        <div className="App-intro">
+        <div className='App-intro'>
           <Login />
         </div>
       </div>
