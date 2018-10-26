@@ -8,12 +8,17 @@
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4"
   },
+  "devDependencies": {
+    "dotenv": "^6.1.0",
+    "mock-local-storage": "^1.1.7"
+  },
   "scripts": {
+    "deploy": "now",
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
-    "test": "CI=true react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "now"
+    "test": "CI=true yarn test:react",
+    "test:watch": "yarn test:react",
+    "test:react": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=./test/setup.js"
   }
 }
