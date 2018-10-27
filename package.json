@@ -3,7 +3,8 @@
   "workspaces": {
     "packages": [
       "web",
-      "api"
+      "api",
+      "modules/stigma"
     ]
   },
   "scripts": {

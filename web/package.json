@@ -4,6 +4,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "@ride/stigma": "^0.1.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4"
@@ -17,8 +18,8 @@
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "test": "CI=true yarn test:react",
-    "test:watch": "yarn test:react",
-    "test:react": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=./test/setup.js"
+    "test": "CI=true yarn test:run",
+    "test:watch": "yarn test:run",
+    "test:run": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=./test/setup.js"
   }
 }
