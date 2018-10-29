@@ -9,3 +9,5 @@ export const FACEBOOK = {
   OAUTH_URI: 'https://www.facebook.com/v3.1/dialog/oauth',
   LOGIN_REDIRECT_URI: `${window.location.origin}/login-redirect.html`
 }
+
+export const API_SERVER_URI = 'http://localhost:3001'

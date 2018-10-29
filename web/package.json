@@ -15,6 +15,7 @@
   },
   "scripts": {
     "deploy": "now",
+    "dev": "yarn start",
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",

@@ -6,6 +6,9 @@ import {
 
 export default class Login extends Component {
   receiveMessage = async (e) => {
+    // this is a hacky way to avoid reading on react dev tools messages
+    if (typeof e.data !== 'string') return
+
     const params = new URLSearchParams(e.data)
     console.log('Facebook login callback params:', params)
 

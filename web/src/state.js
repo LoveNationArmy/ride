@@ -1,20 +1,25 @@
+import {
+  API_SERVER_URI
+} from './constants'
+
+export const withLoading = (fn) => async (state) => {
+  state.data.loading = true
+  state.update()
+  await fn(state)
+  state.data.loading = false
+}
+
 export default {
   data: {
-    value: 0,
-    status: '-',
-    response: 'none yet...'
+    error: null,
+    loading: false
   },
   queries: {
-    ping: async ({ data, mutations, update }) => {
-      data.response = 'waiting'
-      mutations.setStatus('pinging...')
-      update()
-      return new Promise(resolve => setTimeout(() => {
-        data.response = 'pong'
-        mutations.setStatus('pinged!')
-        resolve()
-      }, 3000))
-    }
+    getState: withLoading(async ({ data }) => {
+      const response = await fetch(`${API_SERVER_URI}/queries/getState`)
+      const json = await response.json()
+      Object.assign(data, json)
+    })
   },
   mutations: {
     setStatus: ({ data }, status) => data.status = status,
