@@ -9,6 +9,7 @@ debug('ensuring environment variables')
   'NODE_ENV',
   'SANITY',
   'WEB_CLIENT_ORIGIN',
+  'JWT_SECRET',
   'DB_TOKEN',
   'DB_URL',
   'DB_NAME',

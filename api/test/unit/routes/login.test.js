@@ -7,8 +7,8 @@ describe('login', () => {
   it('responds with user data on success', async () => {
     const fixtureUser = {
       id: 123,
-      fullName: 'Some Name',
-      avatarImageUrl: 'https://some.com/picture.jpg'
+      name: 'Some Name',
+      avatar: 'https://some.com/picture.jpg'
     }
 
     serverMock(FB_API_URL)
@@ -23,7 +23,7 @@ describe('login', () => {
       .query(query => query.access_token === 'some-token')
       .reply(200, {
         id: fixtureUser.id,
-        name: fixtureUser.fullName
+        name: fixtureUser.name
       })
 
     serverMock(FB_API_URL)
@@ -31,7 +31,7 @@ describe('login', () => {
       .query(true)
       .reply(200, {
         data: {
-          url: fixtureUser.avatarImageUrl
+          url: fixtureUser.avatar
         }
       })
 

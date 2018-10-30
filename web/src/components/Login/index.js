@@ -5,11 +5,12 @@ import {
 } from '../../constants'
 
 export default class Login extends Component {
-  receiveMessage = async (e) => {
-    // this is a hacky way to avoid reading on react dev tools messages
-    if (typeof e.data !== 'string') return
+  receiveMessage = (e) => {
+    const { queries } = this.props
 
-    const params = new URLSearchParams(e.data)
+    if (e.data.source !== 'login') return
+
+    const params = new URLSearchParams(e.data.payload)
     console.log('Facebook login callback params:', params)
 
     if (params.get('state') !== CSRF_TOKEN) {
@@ -21,17 +22,7 @@ export default class Login extends Component {
       throw new Error('Facebook login failed')
     }
 
-    // user has signed in, ask backend for access token
-    const loginResponse = await fetch(`http://localhost:3001/login?code=${params.get('code')}`)
-    const fbUser = await loginResponse.json()
-
-    localStorage.user = JSON.stringify({
-      id: fbUser.id,
-      fullName: fbUser.fullName,
-      avatarImageUrl: fbUser.avatarImageUrl
-    })
-
-    this.forceUpdate()
+    queries.login(params.get('code'))
   }
 
   login = () => {
@@ -44,11 +35,6 @@ export default class Login extends Component {
     window.open(`${FACEBOOK.OAUTH_URI}?${params}`, 'facebook-login')
   }
 
-  logout = () => {
-    delete localStorage.user
-    this.forceUpdate()
-  }
-
   componentDidMount () {
     window.addEventListener('message', this.receiveMessage)
   }
@@ -58,16 +44,16 @@ export default class Login extends Component {
   }
 
   render () {
-    let user = localStorage.user
-    if (user) user = JSON.parse(localStorage.user)
-    return !user
+    const { data, queries } = this.props
+
+    return !data.user
       ? <button onClick={this.login}>
           Enter using Facebook
         </button>
       : <div>
-          Welcome, {user.fullName}<br />
-          <img src={user.avatarImageUrl} alt={`Avatar of ${user.fullName}`} /><br />
-          <button onClick={this.logout}>
+          Welcome, {data.user.name}<br />
+          <img src={data.user.avatar} alt={`Avatar of ${data.user.name}`} /><br />
+          <button onClick={queries.logout}>
             Logout
           </button>
         </div>

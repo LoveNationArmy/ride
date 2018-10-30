@@ -1,23 +1,22 @@
 const debug = require('debug')('api:routes')
 const AsyncRouter = require('express-async-router').AsyncRouter
 const { json } = require('body-parser')
-const routes = exports
-const router = routes.router = new AsyncRouter()
+const { auth } = require('../middleware')
+const mutations = exports.mutations = require('./mutations')
+const queries = exports.queries = require('./queries')
 
-routes.login = require('./login')
-routes.queries = require('./queries')
-routes.mutations = require('./mutations')
+const router = exports.router = new AsyncRouter()
 
-router.get('/login', routes.login)
+// queries
+router.get('/queries/getState', queries.getState)
+router.get('/queries/login', queries.login)
 
-router.get('/queries/getState', routes.queries.getState)
+// mutations
+router.post('/mutations/resetState', auth('admin'), mutations.resetState)
+router.post('/mutations/addOffer', auth(), json(), mutations.addOffer)
 
-router.post('/mutations/resetState', routes.mutations.resetState)
-router.post('/mutations/addOffer', json(), routes.mutations.addOffer)
-
+// error handling
 router.use((error, req, res, next) => {
   debug(error)
-  res.status(500).json({
-    error: error.stack
-  })
+  res.status(500).json({ error: error.stack })
 })

@@ -1,29 +1,41 @@
-import {
-  API_SERVER_URI
-} from './constants'
+import api from './api'
 
-export const withLoading = (fn) => async (state) => {
+export const withLoading = (fn) => async (state, ...params) => {
   state.data.loading = true
   state.update()
-  await fn(state)
+  await fn(state, ...params)
   state.data.loading = false
 }
 
 export default {
   data: {
+    user: localStorage.user ? JSON.parse(localStorage.user) : null,
     error: null,
-    loading: false
+    loading: false,
+    offers: []
   },
   queries: {
+    login: withLoading(async ({ data }, code) => {
+      data.user = await api.query('login', { code })
+      localStorage.user = JSON.stringify(data.user)
+    }),
+    logout: ({ data }) => {
+      data.user = null
+      delete localStorage.user
+    },
     getState: withLoading(async ({ data }) => {
-      const response = await fetch(`${API_SERVER_URI}/queries/getState`)
-      const json = await response.json()
-      Object.assign(data, json)
+      Object.assign(data, await api.query('getState'))
     })
   },
   mutations: {
-    setStatus: ({ data }, status) => data.status = status,
-    increaseValue: ({ data }) => data.value++,
-    decreaseValue: ({ data }) => data.value--
+    addOffer: async ({ data }, offer = {
+      date: '2018-10-15',
+      time: '09:30',
+      departure: 'Χανιά',
+      arrival: 'Σούγια',
+      vehicle: 'Hyundai Accent XNZ 3423'
+    }) => {
+      data.offers.push(await api.mutation('addOffer', offer))
+    }
   }
 }

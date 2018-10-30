@@ -16,7 +16,8 @@ class App extends Component {
   render () {
     const {
       error,
-      loading
+      loading,
+      offers
     } = this.state.data
 
     return (
@@ -28,9 +29,12 @@ class App extends Component {
             <h1 className='App-title'>ride</h1>
           </header>
           <div className='App-intro'>
-            <Login />
+            <Login {...this.state} />
           </div>
           <Sample {...this.state} />
+          {
+            offers.map((offer, key) => <div key={key}>{offer.id}</div>)
+          }
         </div>
     )
   }
