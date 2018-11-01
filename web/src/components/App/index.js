@@ -14,12 +14,12 @@ class App extends Component {
 
     return (
       data.loading ? <div>loading...</div>
-      : data.error ? <pre>{data.error}</pre>
-      : <div className='app'>
-          <Header {...this.state} />
-          {data.user ? <OfferForm {...this.state} /> : null}
-          <OffersList {...this.state} />
-        </div>
+        : data.error ? <pre>{data.error}</pre>
+          : <div className='app'>
+            <Header {...this.state} />
+            {data.user ? <OfferForm {...this.state} /> : null}
+            <OffersList {...this.state} />
+          </div>
     )
   }
 }

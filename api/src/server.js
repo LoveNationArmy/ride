@@ -5,7 +5,6 @@ const express = require('express')
 const routes = require('./routes')
 const middleware = require('./middleware')
 const app = module.exports = express()
-const env = process.env
 
 // middleware
 app.use(middleware.cors)

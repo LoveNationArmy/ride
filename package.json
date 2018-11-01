@@ -18,6 +18,8 @@
     "web:deploy": "cp yarn.lock web/ && yarn workspace @ride/web deploy",
     "web:test": "yarn workspace @ride/web test",
     "web:test:watch": "yarn workspace @ride/web test:watch",
+    "lint": "standard --verbose | snazzy",
+    "lint:fix": "standard --fix --verbose | snazzy",
     "todo": "grep -E 'TODO|REVIEW|FIXME' -n -A 1 --color=always -d recurse api/src web/src"
   },
   "engines": {
@@ -30,9 +32,15 @@
     "standard": "^12.0.1"
   },
   "standard": {
-    "globals": [
-      "it",
-      "describe"
+    "parser": "babel-eslint",
+    "env": [
+      "es6",
+      "browser",
+      "node",
+      "jest"
     ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1"
   }
 }

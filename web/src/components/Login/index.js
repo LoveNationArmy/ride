@@ -50,13 +50,13 @@ export default class Login extends Component {
     return !data.user
       ? <button onClick={this.login}>
           Enter using Facebook
-        </button>
+      </button>
       : <div className='login'>
-          <img src={data.user.avatar} alt={`Avatar of ${data.user.name}`} />
-          <div>{data.user.name}</div>
-          <button onClick={queries.logout}>
+        <img src={data.user.avatar} alt={`Avatar of ${data.user.name}`} />
+        <div>{data.user.name}</div>
+        <button onClick={queries.logout}>
             Logout
-          </button>
-        </div>
+        </button>
+      </div>
   }
 }
