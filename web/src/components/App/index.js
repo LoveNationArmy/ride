@@ -1,40 +1,24 @@
 import React, { Component } from 'react'
 import ς from '@ride/stigma'
-import Login from '../Login'
-import Sample from '../Sample'
+import Header from '../Header'
+import OfferForm from '../OfferForm'
+import OffersList from '../OffersList'
 import state from '../../state'
-import logo from './logo.svg'
 import './style.css'
 
 class App extends Component {
   state = ς(this, state)
 
-  async componentDidMount () {
-    await this.state.queries.getState()
-  }
-
   render () {
-    const {
-      error,
-      loading,
-      offers
-    } = this.state.data
+    const { data } = this.state
 
     return (
-      loading ? <div>loading...</div>
-      : error ? <pre>{error}</pre>
-      : <div className='App'>
-          <header className='App-header'>
-            <img src={logo} className='App-logo' alt='logo' />
-            <h1 className='App-title'>ride</h1>
-          </header>
-          <div className='App-intro'>
-            <Login {...this.state} />
-          </div>
-          <Sample {...this.state} />
-          {
-            offers.map((offer, key) => <div key={key}>{offer.id}</div>)
-          }
+      data.loading ? <div>loading...</div>
+      : data.error ? <pre>{data.error}</pre>
+      : <div className='app'>
+          <Header {...this.state} />
+          {data.user ? <OfferForm {...this.state} /> : null}
+          <OffersList {...this.state} />
         </div>
     )
   }

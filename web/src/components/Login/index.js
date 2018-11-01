@@ -3,6 +3,7 @@ import {
   CSRF_TOKEN,
   FACEBOOK
 } from '../../constants'
+import './style.css'
 
 export default class Login extends Component {
   receiveMessage = (e) => {
@@ -50,9 +51,9 @@ export default class Login extends Component {
       ? <button onClick={this.login}>
           Enter using Facebook
         </button>
-      : <div>
-          Welcome, {data.user.name}<br />
-          <img src={data.user.avatar} alt={`Avatar of ${data.user.name}`} /><br />
+      : <div className='login'>
+          <img src={data.user.avatar} alt={`Avatar of ${data.user.name}`} />
+          <div>{data.user.name}</div>
           <button onClick={queries.logout}>
             Logout
           </button>

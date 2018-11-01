@@ -1,0 +1,13 @@
+.login {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.login * {
+  margin-left: 10px;
+}
+
+.login img {
+  width: 20px;
+}
