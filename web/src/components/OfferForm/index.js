@@ -46,16 +46,13 @@ export default class OfferForm extends Component {
 
     return (
       <form className='offer-form' onSubmit={this.submitOffer}>
-        <input name='date' type='date' value={offer.date} onChange={this.handleChange} required />
-        <input name='time' type='time' value={offer.time} onChange={this.handleChange} required />
-        <input name='departure' value={offer.departure} onChange={this.handleChange} placeholder='Departure from' required />
-        <input name='arrival' value={offer.arrival} onChange={this.handleChange} placeholder='Arrive to' required />
-        <input name='vehicle' value={offer.vehicle} onChange={this.handleChange} placeholder='Vehicle' required />
-        <div style={{ position: 'relative' }} className='offer-form-capacity'>
-          <input style={{ paddingLeft: '20px' }} name='capacity' type='number' value={offer.capacity} onChange={this.handleChange} required />
-          <span style={{ position: 'absolute', left: '4px', top: '-1px' }}>웃</span>
-        </div>
-        <input name='price' value={offer.price} onChange={this.handleChange} placeholder='Price (per person)' required />
+        <label>date <input name='date' type='date' value={offer.date} onChange={this.handleChange} required /></label>
+        <label>time <input name='time' type='time' value={offer.time} onChange={this.handleChange} required /></label>
+        <label>departure <input name='departure' value={offer.departure} onChange={this.handleChange} placeholder='where from?' required /></label>
+        <label>arrival <input name='arrival' value={offer.arrival} onChange={this.handleChange} placeholder='where to?' required /></label>
+        <label>vehicle <input name='vehicle' value={offer.vehicle} onChange={this.handleChange} placeholder='i.e seat ibiza XYZ 1234' required /></label>
+        <label>웃 <input name='capacity' type='number' value={offer.capacity} onChange={this.handleChange} required /></label>
+        <label>price <input name='price' value={offer.price} onChange={this.handleChange} placeholder='i.e 2 euro, gratis' required /></label>
         <button type='submit'>submit offer</button>
       </form>
     )

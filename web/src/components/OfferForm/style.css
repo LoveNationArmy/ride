@@ -1,8 +1,18 @@
 .offer-form {
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
   background: #eee;
+}
+
+.offer-form label {
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.offer-form input {
+  font-size: 13px;
+  font-family: inherit;
 }
