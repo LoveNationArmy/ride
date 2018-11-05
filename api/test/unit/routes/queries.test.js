@@ -21,8 +21,8 @@ describe('getState', () => {
 
     await queries.getState(mockReq, mockRes)
 
-    expect(mockRes.statusCode).toBe(200)
-    expect(mockRes._isJSON()).toBe(true)
+    expect(mockRes.statusCode).toEqual(200)
+    expect(mockRes._isJSON()).toEqual(true)
     expect(JSON.parse(mockRes._getData())).toEqual(mockState)
   })
 })
@@ -82,8 +82,8 @@ describe('login', () => {
 
     await queries.login(mockReq, mockRes)
 
-    expect(mockRes.statusCode).toBe(200)
-    expect(mockRes._isJSON()).toBe(true)
+    expect(mockRes.statusCode).toEqual(200)
+    expect(mockRes._isJSON()).toEqual(true)
     expect(JSON.parse(mockRes._getData())).toEqual(expectedUser)
   })
 

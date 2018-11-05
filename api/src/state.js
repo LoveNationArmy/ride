@@ -6,7 +6,7 @@ const {
   DB_NAME
 } = process.env
 
-class State {
+module.exports = class State {
   constructor () {
     this.load().catch(() => this.reset())
   }
@@ -49,5 +49,3 @@ class State {
       })
   }
 }
-
-module.exports = new State()

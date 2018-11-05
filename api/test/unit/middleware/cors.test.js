@@ -10,7 +10,7 @@ describe('cors', () => {
     })
     const res = clientMock.createResponse()
     const next = () => {
-      expect(res.getHeader('Access-Control-Allow-Origin')).toBe('https://valid.com')
+      expect(res.getHeader('Access-Control-Allow-Origin')).toEqual('https://valid.com')
       done()
     }
     cors(req, res, next)
