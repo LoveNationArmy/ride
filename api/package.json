@@ -16,6 +16,7 @@
     "slug": "^0.9.1"
   },
   "devDependencies": {
+    "codecov": "^3.1.0",
     "dotenv": "^6.1.0",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
@@ -30,6 +31,7 @@
     "deploy": "now --dotenv=.env.production",
     "test": "jest --env=node --setupTestFrameworkScriptFile=./test/setup.js",
     "test:coverage": "yarn test --coverage --collectCoverageFrom=src/**/*.js",
+    "test:coverage:report": "yarn test:coverage && codecov",
     "test:unit:coverage": "yarn test test/unit --coverage --collectCoverageFrom=src/**/*.js",
     "test:integration:coverage": "yarn test test/integration --coverage --collectCoverageFrom=src/**/*.js",
     "test:watch": "yarn test:coverage --watch",
