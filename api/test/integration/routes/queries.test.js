@@ -1,7 +1,7 @@
 const app = require('../../../src/server')
 const request = require('supertest')
 
-describe('resetState', () => {
+xdescribe('resetState', () => {
   it('resets state to initial shape', () => {
     return request(app)
       .post('/mutations/resetState')
@@ -10,7 +10,7 @@ describe('resetState', () => {
   })
 })
 
-describe('getState', () => {
+xdescribe('getState', () => {
   it('should return a state with the default shape', () => {
     return request(app)
       .get('/queries/getState')

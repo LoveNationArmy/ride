@@ -2,7 +2,6 @@ const debug = require('debug')('api:routes:queries')
 const querystring = require('querystring')
 const jwt = require('jsonwebtoken')
 const fetch = require('node-fetch')
-const state = require('../state')
 const {
   WEB_CLIENT_ORIGIN,
   JWT_SECRET,
@@ -13,7 +12,7 @@ const {
 
 exports.getState = async (req, res) => {
   debug('getState')
-  res.json(await state.get())
+  res.json(await req.state.get())
 }
 
 exports.login = async (req, res) => {
