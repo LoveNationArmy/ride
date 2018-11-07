@@ -1,5 +1,5 @@
 const debug = require('debug')('api:routes:mutations')
-const utils = require('../utils')
+const utils = require('../lib/utils')
 
 exports.resetState = async (req, res) => {
   debug('resetState')

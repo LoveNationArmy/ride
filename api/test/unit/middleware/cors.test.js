@@ -1,5 +1,5 @@
-const cors = require('../../../src/middleware/cors')
 const clientMock = require('node-mocks-http')
+const cors = require('../../../src/middleware/cors')
 
 describe('cors', () => {
   it('allows environment defined origin', (done) => {

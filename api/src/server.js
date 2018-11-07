@@ -1,5 +1,4 @@
-require('./bootstrap')
-
+require('./lib/env')()
 const debug = require('debug')('api:server')
 const express = require('express')
 const routes = require('./routes')

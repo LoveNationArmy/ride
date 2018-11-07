@@ -1,4 +1,4 @@
-const State = require('../state')
+const State = require('../lib/state')
 
 const state = new State()
 

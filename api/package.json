@@ -27,16 +27,12 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "dev": "nodemon -- -r dotenv/config src/server.js dotenv_config_path=.env.development",
+    "dev": "NODE_ENV=development nodemon src/server.js",
     "start": "node src/server.js",
     "deploy": "now --dotenv=.env.production",
     "test": "jest --env=node --setupTestFrameworkScriptFile=./test/setup.js",
     "test:coverage": "yarn test --coverage --collectCoverageFrom=src/**/*.js",
     "test:coverage:report": "yarn test:coverage && dotenv -e .env.test codecov",
-    "test:unit:coverage": "yarn test test/unit --coverage --collectCoverageFrom=src/**/*.js",
-    "test:integration:coverage": "yarn test test/integration --coverage --collectCoverageFrom=src/**/*.js",
-    "test:watch": "yarn test:coverage --watch",
-    "test:unit:watch": "yarn test:unit:coverage --watch",
-    "test:integration:watch": "yarn test:integration:coverage --watch"
+    "test:watch": "yarn test:coverage --watch"
   }
 }
