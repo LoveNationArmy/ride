@@ -9,7 +9,8 @@ describe('resetState', () => {
     })
 
     mockReq.state = {
-      reset: () => {}
+      reset: () => {},
+      save: () => {}
     }
 
     const mockRes = clientMock.createResponse()

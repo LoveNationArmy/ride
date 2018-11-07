@@ -18,5 +18,6 @@ router.post('/mutations/addOffer', auth(), json(), state, mutations.addOffer)
 // error handling
 router.use((error, req, res, next) => {
   debug('handled error', error)
-  res.status(500).json({ error: error.stack })
+  // TODO: env!=development only show message, not stacktrace
+  res.status(error.status || 500).json({ error: error.stack })
 })

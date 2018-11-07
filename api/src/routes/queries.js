@@ -25,27 +25,31 @@ exports.login = async (req, res) => {
     code: req.query.code
   })
 
-  const oauthResponse = await fetch(`${FB_API_URL}/oauth/access_token?${params}`)
-  const oauth = await oauthResponse.json()
-  const userResponse = await fetch(`${FB_API_URL}/me?access_token=${oauth.access_token}`)
-  const user = await userResponse.json()
-  const pictureResponse = await fetch(`${FB_API_URL}/me/picture?redirect=false&access_token=${oauth.access_token}`)
-  const picture = await pictureResponse.json()
+  try {
+    const oauthResponse = await fetch(`${FB_API_URL}/oauth/access_token?${params}`)
+    const oauth = await oauthResponse.json()
+    const userResponse = await fetch(`${FB_API_URL}/me?access_token=${oauth.access_token}`)
+    const user = await userResponse.json()
+    const pictureResponse = await fetch(`${FB_API_URL}/me/picture?redirect=false&access_token=${oauth.access_token}`)
+    const picture = await pictureResponse.json()
 
-  // encode user data and user agent to a jwt so that we can verify
-  // incoming requests as originating from the facebook logged in user
-  // with a relatively good degree of confidence
-  const token = jwt.sign({
-    agent: req.header('user-agent'),
-    id: user.id,
-    name: user.name,
-    avatar: picture.data.url
-  }, JWT_SECRET)
+    // encode user data and user agent to a jwt so that we can verify
+    // incoming requests as originating from the facebook logged in user
+    // with a relatively good degree of confidence
+    const token = jwt.sign({
+      agent: req.header('user-agent'),
+      id: user.id,
+      name: user.name,
+      avatar: picture.data.url
+    }, JWT_SECRET)
 
-  res.json({
-    token,
-    id: user.id,
-    name: user.name,
-    avatar: picture.data.url
-  })
+    res.json({
+      token,
+      id: user.id,
+      name: user.name,
+      avatar: picture.data.url
+    })
+  } catch (error) {
+    throw new Error('Login failed unexpectedly')
+  }
 }

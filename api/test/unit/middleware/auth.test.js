@@ -71,9 +71,7 @@ describe('auth()', () => {
     mockRes.on('end', () => {
       expect(mockRes.statusCode).toEqual(401)
       expect(mockRes._isJSON()).toEqual(true)
-      expect(JSON.parse(mockRes._getData())).toEqual({
-        error: 'Unauthorized request'
-      })
+      expect(JSON.parse(mockRes._getData()).error).toMatch('Unauthorized')
       done()
     })
   })
@@ -136,11 +134,9 @@ describe('auth(role)', () => {
     middleware(mockReq, mockRes)
 
     mockRes.on('end', () => {
-      expect(mockRes.statusCode).toEqual(401)
+      expect(mockRes.statusCode).toEqual(403)
       expect(mockRes._isJSON()).toEqual(true)
-      expect(JSON.parse(mockRes._getData())).toEqual({
-        error: 'Unauthorized request'
-      })
+      expect(JSON.parse(mockRes._getData()).error).toMatch('Forbidden')
       done()
     })
   })
