@@ -88,9 +88,10 @@ describe('user menu', () => {
 
   afterAll(() => $.unmount())
 
-  it('should show user menu when clicking on avatar', () => {
+  it('should show user menu when clicking on avatar', async () => {
     expect(app.state.data.ui.showUserMenu).toEqual(false)
-    userAvatar.simulate('mousedown')
+    await sleep(500)
+    userAvatar.simulate('touchstart')
     expect(app.state.data.ui.showUserMenu).toEqual(true)
   })
 })
