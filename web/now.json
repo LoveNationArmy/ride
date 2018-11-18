@@ -1,17 +1,14 @@
 {
-  "type": "static",
+  "version": 2,
   "public": true,
-  "build": {
-    "env": {
-      "CI": "true"
-    }
-  },
-  "static": {
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+  "alias": ["ride-web.now.sh"],
+  "builds": [
+    { "src": "build/**/**", "use": "@now/static" }
+  ],
+  "routes": [
+    { "src": "^/(.*)", "dest": "/build/$1" }
+  ],
+  "env": {
+    "SANITY": "sane"
   }
 }

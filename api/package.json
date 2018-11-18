@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
-  "main": "./src/server.js",
+  "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
@@ -24,12 +24,14 @@
     "nock": "^10.0.1",
     "node-mocks-http": "^1.7.3",
     "nodemon": "^1.18.4",
+    "now": "^12.1.3",
     "supertest": "^3.3.0"
   },
   "scripts": {
     "dev": "dotenv -e .env.development nodemon src/server.js",
     "start": "node src/server.js",
-    "deploy": "now --dotenv=.env.production",
+    "deploy": "now",
+    "logs": "now logs -f",
     "test": "jest --env=node --setupTestFrameworkScriptFile=./test/setup.js",
     "test:coverage": "yarn test --coverage --collectCoverageFrom=src/**/*.js",
     "test:coverage:report": "yarn test:coverage && dotenv -e .env.test codecov",

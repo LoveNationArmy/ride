@@ -1,7 +1,8 @@
 const debug = require('debug')('api:routes:queries')
 const querystring = require('querystring')
 const jwt = require('jsonwebtoken')
-const fetch = require('node-fetch')
+let fetch = require('node-fetch')
+
 const {
   NODE_ENV,
   JWT_SECRET,
@@ -13,6 +14,8 @@ const {
 let {
   WEB_CLIENT_ORIGIN
 } = process.env
+
+if (fetch.default) fetch = fetch.default
 
 exports.getState = async (req, res) => {
   debug('getState')

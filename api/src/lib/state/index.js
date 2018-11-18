@@ -1,9 +1,14 @@
 const debug = require('debug')('api:lib:state')
 
+const adapters = {
+  http: require('./adapters/http'),
+  memory: require('./adapters/memory')
+}
+
 module.exports = class State {
   constructor (props = {}) {
     this.namespace = props.namespace = props.namespace || 'default'
-    this.adapter = require(`./adapters/${props.adapter || 'memory'}`)(props)
+    this.adapter = adapters[props.adapter || 'memory'](props)
     this.initial = props.initial || {}
     this.reset()
   }

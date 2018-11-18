@@ -1,7 +1,25 @@
 {
+  "version": 2,
   "public": true,
-  "type": "docker",
-  "features": {
-    "cloud": "v2"
+  "alias": ["ride-api.now.sh"],
+  "builds": [
+    { "src": "index.js", "use": "@now/node-server" }
+  ],
+  "routes": [
+    { "src": "/.*", "dest": "/"}
+  ],
+  "env": {
+    "SANITY": "sane",
+    "DEBUG": "api:*",
+    "WEB_CLIENT_ORIGIN": "https://ride-web.now.sh",
+    "JWT_SECRET": "@jwt_secret",
+    "DB_ADAPTER": "http",
+    "DB_SEEDERS": "seeders/production.json",
+    "DB_URL": "https://ride-state.glitch.me",
+    "DB_TOKEN": "@db_token",
+    "FB_API_URL": "https://graph.facebook.com/v3.1",
+    "FB_APP_ID": "566342073799546",
+    "FB_APP_SECRET": "@fb_app_secret",
+    "CODECOV_TOKEN": ""
   }
 }

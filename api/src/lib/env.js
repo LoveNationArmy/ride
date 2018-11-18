@@ -23,6 +23,7 @@ module.exports = () => {
   assertKeys([
     'NODE_ENV',
     'SANITY',
+    'DEBUG',
     'WEB_CLIENT_ORIGIN',
     'JWT_SECRET',
     'DB_ADAPTER',
