@@ -36,6 +36,7 @@
     "api:test": "yarn workspace @ride/api test",
     "api:test:watch": "yarn workspace @ride/api test:watch",
     "api:test:coverage": "yarn workspace @ride/api test:coverage",
+    "api:test:coverage:report": "yarn workspace @ride/api test:coverage:report",
     "web:start": "yarn workspace @ride/web start",
     "web:dev": "yarn workspace @ride/web dev",
     "web:deploy": "cp yarn.lock web/ && yarn workspace @ride/web deploy",
