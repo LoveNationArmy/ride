@@ -35,10 +35,13 @@
     "api:deploy": "cp yarn.lock api/ && yarn workspace @ride/api deploy",
     "api:test": "yarn workspace @ride/api test",
     "api:test:watch": "yarn workspace @ride/api test:watch",
+    "api:test:coverage": "yarn workspace @ride/api test:coverage",
     "web:start": "yarn workspace @ride/web start",
+    "web:dev": "yarn workspace @ride/web dev",
     "web:deploy": "cp yarn.lock web/ && yarn workspace @ride/web deploy",
     "web:test": "yarn workspace @ride/web test",
     "web:test:watch": "yarn workspace @ride/web test:watch",
+    "web:test:coverage": "yarn workspace @ride/web test:coverage",
     "lint": "standard --verbose | snazzy",
     "lint:fix": "standard --fix --verbose | snazzy",
     "todo": "grep -E 'TODO|REVIEW|FIXME' -n -A 1 --color=always -d recurse api/src web/src"
