@@ -44,11 +44,11 @@ fixture.namespaces.forEach((namespace) => {
     })
 
     it(`load() with a invalid token`, async () => {
-      expect(invalid.load()).rejects.toThrow('invalid json')
+      expect(invalid.load()).rejects.toThrow()
     })
 
     it(`save() different data with an invalid token`, () => {
-      expect(invalid.save(differentData)).rejects.toThrow('invalid json')
+      expect(invalid.save(differentData)).rejects.toThrow()
     })
 
     it(`save() different data with a valid token`, async () => {
@@ -82,7 +82,7 @@ describe('new namespace', () => {
   const adapter = http({ namespace: 'more', url: fixture.url, token: 'valid' })
 
   it('load() throws', () => {
-    expect(adapter.load()).rejects.toThrow('invalid json')
+    expect(adapter.load()).rejects.toThrow()
   })
 
   it('save() works', async () => {
