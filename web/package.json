@@ -3,28 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@ride/stigma": "^0.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
+    "node-sass": "^4.10.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4"
+    "react-easy-emoji": "^1.2.0",
+    "react-scripts": "^2.1.1"
   },
   "devDependencies": {
     "dotenv": "^6.1.0",
+    "dotenv-cli": "^1.4.0",
     "fetch-mock": "^7.2.2",
     "mock-local-storage": "^1.1.7"
   },
   "scripts": {
     "deploy": "now",
-    "dev": "yarn start",
-    "start": "HTTPS=true react-scripts start",
+    "dev": "dotenv -e .env.development yarn start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "CI=true yarn test:run",
-    "test:watch": "yarn test:run --coverage --watch",
-    "test:coverage": "yarn test:run --coverage",
-    "test:run": "react-scripts test --env=jsdom --setupTestFrameworkScriptFile=./test/setup.js"
-  }
+    "test:coverage": "yarn test:run --coverage --collectCoverageFrom=src/**/*.js",
+    "test:watch": "yarn test:coverage --watch",
+    "test:run": "react-scripts test --setupTestFrameworkScriptFile=./test/setup.js --testMatch=**/*.test.js"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

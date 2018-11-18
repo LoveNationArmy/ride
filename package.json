@@ -7,6 +7,27 @@
       "modules/stigma"
     ]
   },
+  "engines": {
+    "node": ">=10.10",
+    "yarn": ">=1.9"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "env": [
+      "es6",
+      "browser",
+      "node",
+      "jest"
+    ]
+  },
+  "dependencies": {
+    "husky": "^1.1.0",
+    "snazzy": "^8.0.0",
+    "standard": "^12.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0"
+  },
   "scripts": {
     "clean": "rm -rf node_modules yarn.lock web/node_modules api/node_modules",
     "api:start": "yarn workspace @ride/api start",
@@ -21,26 +42,5 @@
     "lint": "standard --verbose | snazzy",
     "lint:fix": "standard --fix --verbose | snazzy",
     "todo": "grep -E 'TODO|REVIEW|FIXME' -n -A 1 --color=always -d recurse api/src web/src"
-  },
-  "engines": {
-    "node": ">=10.10",
-    "yarn": ">=1.9"
-  },
-  "dependencies": {
-    "husky": "^1.1.0",
-    "snazzy": "^8.0.0",
-    "standard": "^12.0.1"
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "env": [
-      "es6",
-      "browser",
-      "node",
-      "jest"
-    ]
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.1"
   }
 }

@@ -1,8 +1,9 @@
 import React from 'react'
-import './style.css'
+import Icon from '../Icon'
+import './style.scss'
 
 export default () =>
   <a href='/' className='logo'>
-    <span className='logo-icon' role='img' aria-label='vehicle'>🚗</span>
-    <span className='logo-text'>ride</span>
+    <Icon className='logo-icon' value='🚗' />
+    <span className='logo-text'>choo</span>
   </a>

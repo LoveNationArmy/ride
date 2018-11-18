@@ -1,0 +1,42 @@
+.app {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 0 50px rgba(0,0,0,.24);
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* smartphones, iPhone, portrait 480x320 phones */
+@media (min-width:0px) {
+  .offer-form {
+
+  }
+}
+
+/* smartphones, iPhone, portrait 480x320 phones */
+@media (min-width:360px) {
+  .offer-form * {
+    // font-size: 83% !important;
+  }
+}
+
+@media (min-width:411px) {
+  .offer-form * {
+    // font-size: 86% !important;
+  }
+}
+
+/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+@media (min-width:481px) {
+  .offer-form * {
+    // font-size: 97% !important;
+  }
+}
+
+@media (min-width:641px) { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+@media (min-width:961px) { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }

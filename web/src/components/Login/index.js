@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import {
-  CSRF_TOKEN,
-  FACEBOOK
-} from '../../constants'
-import './style.css'
+import Icon from '../Icon'
+import { CSRF_TOKEN, FACEBOOK } from '../../lib/env'
+import './style.scss'
 
 export default class Login extends Component {
   receiveMessage = (e) => {
@@ -12,7 +10,6 @@ export default class Login extends Component {
     if (e.data.source !== 'login') return
 
     const params = new URLSearchParams(e.data.payload)
-    console.log('Facebook login callback params:', params)
 
     if (params.get('state') !== CSRF_TOKEN) {
       throw new Error('Cross-site forgery attempt')
@@ -38,25 +35,30 @@ export default class Login extends Component {
 
   componentDidMount () {
     window.addEventListener('message', this.receiveMessage)
+    window.addEventListener('mousedown', this.windowTapHandler)
+    window.addEventListener('touchstart', this.windowTapHandler)
   }
 
   componentWillUnmount () {
     window.removeEventListener('message', this.receiveMessage)
+    window.removeEventListener('mousedown', this.windowTapHandler)
+    window.removeEventListener('touchstart', this.windowTapHandler)
   }
 
   render () {
-    const { data, queries } = this.props
+    const { data, mutations } = this.props
 
     return !data.user
-      ? <button onClick={this.login}>
+      ? <button className='login-button' onClick={this.login}>
           Enter using Facebook
       </button>
       : <div className='login'>
-        <img src={data.user.avatar} alt={`Avatar of ${data.user.name}`} />
-        <div>{data.user.name}</div>
-        <button onClick={queries.logout}>
-            Logout
-        </button>
+        <Icon onClick={() => mutations.setUserMenu(!data.ui.showUserMenu)}>
+          <img
+            src={data.user.avatar}
+            alt={`Avatar of ${data.user.name}`}
+          />
+        </Icon>
       </div>
   }
 }

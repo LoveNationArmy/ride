@@ -9,7 +9,7 @@ const app = module.exports = express()
 app.use(middleware.cors)
 
 // router
-app.use(routes.router)
+app.use('/api', routes.router)
 
 // start server when running from the cli (using `node server.js`)
 // istanbul ignore if because we can't instrument coverage for cli usage(?)

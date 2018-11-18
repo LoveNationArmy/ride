@@ -1,0 +1,24 @@
+.header {
+  z-index: 10;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  position: sticky;
+  font-family: sans-serif;
+  top: 0;
+  background: #4be;
+  padding: 11px 16px 11px 10px;
+
+  &-nav {
+    .icon {
+      padding: 5px 15px;
+      border-radius: 30px;
+      font-size: 24px;
+      line-height: 0;
+    }
+
+    .active {
+      background: rgba(0,0,0,.2);
+    }
+  }
+}

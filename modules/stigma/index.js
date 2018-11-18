@@ -2,6 +2,7 @@ module.exports = (context, state) => {
   state.update = () => context.setState(context.state)
   state.queries = effects(context, state.queries)
   state.mutations = effects(context, state.mutations)
+  state.api = context.api
   return state
 }
 

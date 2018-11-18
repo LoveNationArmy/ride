@@ -1,0 +1,127 @@
+.offers-list {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 14px;
+
+  .offer-item {
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > div {
+      flex: 1;
+
+      &:last-child {
+        flex: 0.55;
+      }
+    }
+
+    &:nth-child(even) {
+      background: rgba(0,0,0,.03);
+    }
+
+    button {
+      padding: 10px;
+    }
+
+    &-places {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        margin: 0 4px 0 0;
+      }
+      .strong {
+        color: #aaa;
+        font-size: 100%;
+        vertical-align: middle;
+        margin: 0 0 0 5px;
+      }
+
+      span {
+        flex: 0.4;
+        white-space: nowrap;
+      }
+    }
+
+    &-avatar {
+      position: absolute;
+      width: 18px;
+      border-radius: 18px;
+    }
+
+    &-time > div {
+      position: relative;
+      // align-self: center;
+      // vertical-align: middle;
+    }
+
+    &-vehicle {
+      color: #777;
+      font-size: 50%;
+      margin-bottom: 8px;
+    }
+
+    &-time-icon {
+      position: absolute;
+      margin-left: -20px;
+      margin-top: -7px;
+      font-size: 40%;
+    }
+
+    &-time-text {
+      vertical-align: middle;
+      font-size: 240%;
+      // line-height: 1em;
+    }
+
+    &-people {
+      font-size: 200%;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+
+      > * {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        padding: 0 8px;
+      }
+
+      &-figures {
+        line-height: 1em;
+        margin-bottom: 8px;
+      }
+    }
+
+    &-people-now {
+      font-size: 200%;
+    }
+
+    &-capacity {
+      font-size: 100%;
+    }
+
+    &-price {
+      font-size: 70%;
+    }
+
+    .inactive {
+      opacity: 0.2 !important;
+    }
+
+    &:hover {
+      background: rgba(255,120,30,.12);
+    }
+  }
+}

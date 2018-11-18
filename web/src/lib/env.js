@@ -10,4 +10,4 @@ export const FACEBOOK = {
   LOGIN_REDIRECT_URI: `${window.location.origin}/login-redirect.html`
 }
 
-export const API_SERVER_URI = 'http://localhost:3001'
+export const API_SERVER_URI = `${window.location.origin}/api`

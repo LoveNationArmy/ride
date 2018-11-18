@@ -27,7 +27,7 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "dev": "NODE_ENV=development nodemon src/server.js",
+    "dev": "dotenv -e .env.development nodemon src/server.js",
     "start": "node src/server.js",
     "deploy": "now --dotenv=.env.production",
     "test": "jest --env=node --setupTestFrameworkScriptFile=./test/setup.js",

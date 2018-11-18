@@ -3,20 +3,29 @@ const querystring = require('querystring')
 const jwt = require('jsonwebtoken')
 const fetch = require('node-fetch')
 const {
-  WEB_CLIENT_ORIGIN,
+  NODE_ENV,
   JWT_SECRET,
   FB_API_URL,
   FB_APP_ID,
   FB_APP_SECRET
 } = process.env
 
+let {
+  WEB_CLIENT_ORIGIN,
+} = process.env
+
 exports.getState = async (req, res) => {
   debug('getState')
+  await req.state.load()
   res.json(await req.state.get())
 }
 
 exports.login = async (req, res) => {
   debug('login', req.query.code)
+
+  if (NODE_ENV !== 'production') {
+    WEB_CLIENT_ORIGIN = req.header('referer').slice(0, -1)
+  }
 
   const params = querystring.stringify({
     client_id: FB_APP_ID,
@@ -33,6 +42,7 @@ exports.login = async (req, res) => {
     const pictureResponse = await fetch(`${FB_API_URL}/me/picture?redirect=false&access_token=${oauth.access_token}`)
     const picture = await pictureResponse.json()
 
+    console.log(oauthResponse.text())
     // encode user data and user agent to a jwt so that we can verify
     // incoming requests as originating from the facebook logged in user
     // with a relatively good degree of confidence
@@ -50,6 +60,7 @@ exports.login = async (req, res) => {
       avatar: picture.data.url
     })
   } catch (error) {
+    console.error(error.stack)
     throw new Error('Login failed unexpectedly')
   }
 }
