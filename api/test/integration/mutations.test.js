@@ -52,13 +52,13 @@ describe('/mutations/resetState', () => {
 
   it('should forbid when user is NOT authorized (guest)', () => {
     return request(server)
-      .post('/mutations/resetState')
+      .post('/api/mutations/resetState')
       .expect(401)
   })
 
   it('should forbid when user is NOT admin', () => {
     return request(server)
-      .post('/mutations/resetState')
+      .post('/api/mutations/resetState')
       .set('User-Agent', fixture.user.agent)
       .set('Authorization', `Bearer ${fixture.user.token}`)
       .expect(403)
@@ -66,7 +66,7 @@ describe('/mutations/resetState', () => {
 
   it('should reset state when user IS admin', () => {
     return request(server)
-      .post('/mutations/resetState')
+      .post('/api/mutations/resetState')
       .set('User-Agent', fixture.admin.agent)
       .set('Authorization', `Bearer ${fixture.admin.token}`)
       .expect(200)
@@ -78,14 +78,14 @@ describe('/mutations/addOffer', () => {
 
   it('should forbid when NOT authorized', () => {
     return request(server)
-      .post('/mutations/addOffer')
+      .post('/api/mutations/addOffer')
       .send(fixture.offer)
       .expect(401)
   })
 
   it('should respond with offer object when IS authorized', () => {
     return request(server)
-      .post('/mutations/addOffer')
+      .post('/api/mutations/addOffer')
       .set('User-Agent', fixture.user.agent)
       .set('Authorization', `Bearer ${fixture.user.token}`)
       .send(fixture.offer)

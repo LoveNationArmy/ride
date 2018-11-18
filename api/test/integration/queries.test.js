@@ -11,10 +11,12 @@ const createServer = () => {
 describe('/queries/getState', () => {
   it('should return the state', () => {
     const server = createServer()
+    server.state.data = { foo: 'bar' }
+    server.state.save()
     return request(server)
-      .get('/queries/getState')
+      .get('/api/queries/getState')
       .expect(200)
-      .expect({})
+      .expect({ foo: 'bar' })
   })
 })
 
@@ -61,7 +63,7 @@ describe('/queries/login', () => {
       })
 
     return request(server)
-      .get('/queries/login')
+      .get('/api/queries/login')
       .set('User-Agent', fixtureUser.agent)
       .query({ code: 'some-code' })
       .expect(200)
@@ -81,7 +83,7 @@ describe('/queries/login', () => {
       .reply(403)
 
     return request(server)
-      .get('/queries/login')
+      .get('/api/queries/login')
       .query({ code: 'some-code' })
       .expect(500)
       .expect((res) => expect(res.body.error).toMatch('Login failed'))

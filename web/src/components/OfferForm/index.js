@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Icon from '../Icon'
 import './style.scss'
 
-const Fieldset = ({ className, children }) => <div className={`fieldset ${className}`}>{children}</div>
+const Fieldset = ({ className, children }) =>
+  <div className={['fieldset', className].filter(Boolean).join(' ')}>{children}</div>
 
 let formState = {
   offer: {

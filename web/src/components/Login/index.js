@@ -35,14 +35,10 @@ export default class Login extends Component {
 
   componentDidMount () {
     window.addEventListener('message', this.receiveMessage)
-    window.addEventListener('mousedown', this.windowTapHandler)
-    window.addEventListener('touchstart', this.windowTapHandler)
   }
 
   componentWillUnmount () {
     window.removeEventListener('message', this.receiveMessage)
-    window.removeEventListener('mousedown', this.windowTapHandler)
-    window.removeEventListener('touchstart', this.windowTapHandler)
   }
 
   render () {
@@ -53,7 +49,9 @@ export default class Login extends Component {
           Enter using Facebook
       </button>
       : <div className='login'>
-        <Icon onClick={() => mutations.setUserMenu(!data.ui.showUserMenu)}>
+        <Icon
+          className='user-avatar'
+          onClick={() => mutations.setUserMenu(!data.ui.showUserMenu)}>
           <img
             src={data.user.avatar}
             alt={`Avatar of ${data.user.name}`}

@@ -21,10 +21,11 @@ export default ({
     onTouchStart={onClick}
     onMouseDown={onClick}
     onContextMenu={onClick}
-    className={`
-      icon
-      ${className || ''}
-      ${active ? 'active' : ''}
-      ${strong ? 'strong' : ''}
-    `}>{emoji(value || '')}{children}</span>
+    className={[
+      'icon',
+      className,
+      active ? 'active' : null,
+      strong ? 'strong' : null
+    ].filter(Boolean).join(' ')
+    }>{emoji(value || '')}{children}</span>
 }

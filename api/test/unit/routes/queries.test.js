@@ -14,6 +14,7 @@ describe('getState', () => {
     })
 
     mockReq.state = {
+      load: () => {},
       get: () => mockState
     }
 

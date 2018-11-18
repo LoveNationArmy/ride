@@ -79,7 +79,7 @@ const server = createServer()
 
 beforeAll((done) => {
   request(server)
-    .post('/mutations/resetState')
+    .post('/api/mutations/resetState')
     .set('User-Agent', fixture.admin.agent)
     .set('Authorization', `Bearer ${fixture.admin.token}`)
     .expect(200, done)
@@ -88,7 +88,7 @@ beforeAll((done) => {
 describe('as a guest user when i try to add an offer', () => {
   it('should forbid it', () => {
     return request(server)
-      .post('/mutations/addOffer')
+      .post('/api/mutations/addOffer')
       .send(fixture.offers[0])
       .expect(401)
   })
@@ -97,7 +97,7 @@ describe('as a guest user when i try to add an offer', () => {
 describe('as a logged in user i can add offers', () => {
   it('should add offer to the offers list', () => {
     return request(server)
-      .post('/mutations/addOffer')
+      .post('/api/mutations/addOffer')
       .set('User-Agent', fixture.user.agent)
       .set('Authorization', `Bearer ${fixture.user.token}`)
       .send(fixture.offers[0])
@@ -109,7 +109,7 @@ describe('as a logged in user i can add offers', () => {
 
   it('should be added in the offers list', () => {
     return request(server)
-      .get('/queries/getState')
+      .get('/api/queries/getState')
       .expect(200)
       .expect((res) => {
         expect(res.body).toEqual({
@@ -122,7 +122,7 @@ describe('as a logged in user i can add offers', () => {
 
   it('adds offer from fixture index 1', () => {
     return request(server)
-      .post('/mutations/addOffer')
+      .post('/api/mutations/addOffer')
       .set('User-Agent', fixture.user.agent)
       .set('Authorization', `Bearer ${fixture.user.token}`)
       .send(fixture.offers[1])
@@ -134,7 +134,7 @@ describe('as a logged in user i can add offers', () => {
 
   it('should be added in the offers list', () => {
     return request(server)
-      .get('/queries/getState')
+      .get('/api/queries/getState')
       .expect(200)
       .expect((res) => {
         expect(res.body).toEqual({
@@ -148,7 +148,7 @@ describe('as a logged in user i can add offers', () => {
 
   it('adds offer from fixture index 2', () => {
     return request(server)
-      .post('/mutations/addOffer')
+      .post('/api/mutations/addOffer')
       .set('User-Agent', fixture.user.agent)
       .set('Authorization', `Bearer ${fixture.user.token}`)
       .send(fixture.offers[2])
@@ -160,7 +160,7 @@ describe('as a logged in user i can add offers', () => {
 
   it('should be added in the offers list', () => {
     return request(server)
-      .get('/queries/getState')
+      .get('/api/queries/getState')
       .expect(200)
       .expect((res) => {
         expect(res.body.offers).toEqual(expected.offers)

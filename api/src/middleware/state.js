@@ -12,3 +12,5 @@ module.exports = (req, res, next) => {
   req.state = state
   next()
 }
+
+module.exports.instance = state

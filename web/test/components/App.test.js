@@ -28,6 +28,7 @@ describe('App', () => {
     $.update()
     expect(app.state.data.offers).toEqual(fixture.offers)
     expect($.find('.offer-item').length).toEqual(fixture.offers.length)
+    $.unmount()
   })
 })
 
@@ -40,8 +41,10 @@ describe('header nav', () => {
     navIcons = $.find('.header-nav .icon')
   })
 
+  afterAll(() => $.unmount())
+
   it('should default to "offers"', () => {
-    expect(app.state.data.screen).toEqual('offers')
+    expect(app.state.data.ui.screen).toEqual('offers')
     expect(navIcons.at(0).html()).toContain('active')
     expect(navIcons.at(1).html()).not.toContain('active')
   })
@@ -50,7 +53,7 @@ describe('header nav', () => {
     navIcons.at(1).simulate('mousedown')
     await sleep(10)
     $.update()
-    expect(app.state.data.screen).toEqual('requests')
+    expect(app.state.data.ui.screen).toEqual('requests')
     expect(navIcons.at(0).html()).not.toContain('active')
     expect(navIcons.at(1).html()).toContain('active')
   })
@@ -59,9 +62,36 @@ describe('header nav', () => {
     navIcons.at(0).simulate('touchstart')
     await sleep(10)
     $.update()
-    expect(app.state.data.screen).toEqual('offers')
+    expect(app.state.data.ui.screen).toEqual('offers')
     expect(navIcons.at(0).html()).toContain('active')
     expect(navIcons.at(1).html()).not.toContain('active')
+  })
+})
+
+describe('user menu', () => {
+  let $, app, userAvatar
+
+  const fixture = {
+    user: {
+      token: 'foo',
+      id: '123',
+      name: 'foo',
+      avatar: 'foo.png'
+    }
+  }
+
+  beforeAll(() => {
+    $ = mount(<App api={api()} state={state({ user: fixture.user })} />)
+    app = $.instance()
+    userAvatar = $.find('span.user-avatar')
+  })
+
+  afterAll(() => $.unmount())
+
+  it('should show user menu when clicking on avatar', () => {
+    expect(app.state.data.ui.showUserMenu).toEqual(false)
+    userAvatar.simulate('mousedown')
+    expect(app.state.data.ui.showUserMenu).toEqual(true)
   })
 })
 
@@ -81,6 +111,8 @@ describe('facebook login', () => {
     $ = mount(<App api={api({ user: null })} state={state({ user: null })} />)
     app = $.instance()
   })
+
+  afterAll(() => $.unmount())
 
   let loginButton
 
@@ -155,6 +187,8 @@ describe('offers', () => {
     $ = mount(<App api={api({ user: fixture.user })} state={state({ user: fixture.user })} />)
     app = $.instance()
   })
+
+  afterAll(() => $.unmount())
 
   it('should populate offers list on init', async () => {
     expect($.find('.offers').length).toEqual(0)

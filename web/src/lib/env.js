@@ -10,4 +10,4 @@ export const FACEBOOK = {
   LOGIN_REDIRECT_URI: `${window.location.origin}/login-redirect.html`
 }
 
-export const API_SERVER_URI = `${window.location.origin}/api`
+export const API_SERVER_URI = process.env.REACT_APP_API_SERVER_URI || `${window.location.origin}/api`

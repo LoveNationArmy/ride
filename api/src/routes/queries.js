@@ -24,7 +24,7 @@ exports.login = async (req, res) => {
   debug('login', req.query.code)
 
   if (NODE_ENV !== 'production') {
-    WEB_CLIENT_ORIGIN = req.header('referer').slice(0, -1)
+    WEB_CLIENT_ORIGIN = (req.header('referer') || '').slice(0, -1)
   }
 
   const params = querystring.stringify({
@@ -42,7 +42,6 @@ exports.login = async (req, res) => {
     const pictureResponse = await fetch(`${FB_API_URL}/me/picture?redirect=false&access_token=${oauth.access_token}`)
     const picture = await pictureResponse.json()
 
-    console.log(oauthResponse.text())
     // encode user data and user agent to a jwt so that we can verify
     // incoming requests as originating from the facebook logged in user
     // with a relatively good degree of confidence
@@ -60,7 +59,14 @@ exports.login = async (req, res) => {
       avatar: picture.data.url
     })
   } catch (error) {
-    console.error(error.stack)
+    // WARN:
+    // this valuable debug line must be left
+    // commented out because it exposes secrets
+    // to the console.
+    // Use only for development but don't commit it.
+    //
+    // console.error(error.stack)
+
     throw new Error('Login failed unexpectedly')
   }
 }
