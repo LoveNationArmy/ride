@@ -2,12 +2,21 @@
   z-index: 10;
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   justify-content: space-between;
   position: sticky;
   font-family: sans-serif;
   top: 0;
   background: #4be;
   padding: 11px 16px 11px 10px;
+
+  .login-button {
+    width: 24%;
+    padding: 3px;
+    background: #22a;
+    border: none;
+    color: #fff;
+  }
 
   &-nav {
     .icon {

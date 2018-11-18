@@ -28,8 +28,8 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "dev": "dotenv -e .env.development nodemon src/server.js",
-    "start": "node src/server.js",
+    "dev": "dotenv -e .env.development nodemon index.js",
+    "start": "node index.js",
     "deploy": "now",
     "logs": "now logs -f",
     "test": "jest --env=node --setupTestFrameworkScriptFile=./test/setup.js",

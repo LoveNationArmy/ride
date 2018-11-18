@@ -40,7 +40,13 @@ export default (initialState = {}) => ({
       localStorage.screen = screen
     },
     setUserMenu: ({ data }, visibility) => {
+      if (Date.now() - setUserMenuFiredOn < 500) {
+        return
+      }
+      setUserMenuFiredOn = Date.now()
       data.ui.showUserMenu = visibility
     }
   }
 })
+
+let setUserMenuFiredOn = Date.now()
