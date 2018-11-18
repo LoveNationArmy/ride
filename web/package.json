@@ -21,7 +21,7 @@
     "now": "^12.1.3"
   },
   "scripts": {
-    "deploy": "now",
+    "deploy": "yarn clean && yarn build && now",
     "clean": "rm -rf build",
     "logs": "now logs -f",
     "dev": "dotenv -e .env.development yarn start",
