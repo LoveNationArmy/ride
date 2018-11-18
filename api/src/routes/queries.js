@@ -11,7 +11,7 @@ const {
 } = process.env
 
 let {
-  WEB_CLIENT_ORIGIN,
+  WEB_CLIENT_ORIGIN
 } = process.env
 
 exports.getState = async (req, res) => {
