@@ -1,7 +1,21 @@
-const handle = (res) => res.json().then((json) => {
+type Response = {
+  text: Function
+}
+
+type JSONResponse = {
+  error?: string
+}
+
+const handle = async (res: Response) => {
+  const body = await res.text()
+  try {
+    var json: JSONResponse = JSON.parse(body)
+  } catch (error) {
+    throw new Error(body + `\nCaptured error was: ${error.message}`)
+  }
   if (json.error) throw new Error(json.error)
   else return json
-})
+}
 
 export default (params = {}) => ({
   ...params,
