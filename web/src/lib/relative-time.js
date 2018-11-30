@@ -12,14 +12,19 @@ const YEAR = DAY * 365
 
 const MONTH = YEAR / 12
 
+const TODAY = new Date(new Date(Date.now() + DAY).toISOString().split('T')[0]).getTime() - Date.now()
+
+const TOMORROW = new Date(new Date(Date.now() + DAY + DAY).toISOString().split('T')[0]).getTime() - Date.now()
+
 const formats = [
   [ 0, 'έληξε' ],
   [ 0.7 * MINUTE, 'μόλις τώρα' ],
   [ 1.5 * MINUTE, 'σε ένα λεπτό' ],
   [ 60 * MINUTE, 'σε \'? λεπτά', MINUTE ],
   [ 1.5 * HOUR, 'σε μία ώρα' ],
-  [ DAY, 'σε ? ώρες', HOUR ],
-  [ 2 * DAY, 'αύριο' ],
+  [ TODAY, 'σε ? ώρες', HOUR ],
+  [ TOMORROW, 'αύριο' ],
+  [ 2 * DAY, 'μεθαύριο' ],
   [ 7 * DAY, 'σε ? ημέρες', DAY ],
   [ 1.5 * WEEK, 'σε μία εβδομάδα' ],
   [ MONTH, 'σε ? εβδομάδες', WEEK ],
