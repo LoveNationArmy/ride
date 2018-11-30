@@ -1,3 +1,72 @@
 {
-  "offers": []
+  "offers": [
+    {
+      "id": "2018-11-19/0900/xania/rethimno/amaxi",
+      "user": {
+        "id": "2650449234969073",
+        "name": "George Stagas",
+        "avatar": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2650449234969073&height=50&width=50&ext=1545151338&hash=AeTEj9PNeQcsIpkI"
+      },
+      "status": "created",
+      "joined": [],
+      "date": "2018-12-01",
+      "time": "09:00",
+      "departure": "Χανιά",
+      "arrival": "Ρέθυμνο",
+      "vehicle": "car ford focus mple",
+      "capacity": "3",
+      "price": "1.5 euro"
+    },
+    {
+      "id": "2018-11-20/1130/xania/platanias/ama3i",
+      "user": {
+        "id": "2650449234969073",
+        "name": "George Stagas",
+        "avatar": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2650449234969073&height=50&width=50&ext=1545152023&hash=AeRGr2xgluV9N5bH"
+      },
+      "status": "created",
+      "joined": [],
+      "date": "2018-12-04",
+      "time": "11:30",
+      "departure": "Παλιόχωρα",
+      "arrival": "Γαύδος",
+      "vehicle": "boat",
+      "capacity": "6",
+      "price": "8 euro"
+    },
+    {
+      "id": "2018-11-20/0900/xania/hrakleio/smart",
+      "user": {
+        "id": "2650449234969073",
+        "name": "George Stagas",
+        "avatar": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2650449234969073&height=50&width=50&ext=1545154734&hash=AeSK2SjCCfCHUhIH"
+      },
+      "status": "created",
+      "joined": [],
+      "date": "2018-12-01",
+      "time": "14:00",
+      "departure": "Χανιά Κέντρο",
+      "arrival": "Κουνουπιδιανά",
+      "vehicle": "bike",
+      "capacity": "1",
+      "price": "1 euro"
+    },
+    {
+      "id": "2018-11-24/1800/a8hna/mara8wna/ama3i",
+      "user": {
+        "id": "2650449234969073",
+        "name": "George Stagas",
+        "avatar": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2650449234969073&height=50&width=50&ext=1545405297&hash=AeR9QQT2pwff_cMO"
+      },
+      "status": "created",
+      "joined": [],
+      "date": "2018-12-02",
+      "time": "18:00",
+      "departure": "Σύνταγμα",
+      "arrival": "Γλυφάδα",
+      "vehicle": "car",
+      "capacity": "3",
+      "price": "2 euro"
+    }
+  ]
 }
