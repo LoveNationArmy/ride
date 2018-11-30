@@ -7,7 +7,6 @@
   "dependencies": {
     "@craco/craco": "^3.1.1",
     "@ride/stigma": "^0.1.0",
-    "@ride/models": "^0.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "flow-runtime": "^0.17.0",
