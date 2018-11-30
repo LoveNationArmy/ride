@@ -49,6 +49,8 @@
     }
 
     &-joined-actions {
+      margin: 5px 0;
+
       .icon {
         position: relative;
         vertical-align: middle;
@@ -58,8 +60,11 @@
       }
 
       button {
-        margin-left: 10px;
-        padding: 10px 30px !important;
+        width: 70px;
+        height: 70px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        margin-left: 7px;
       }
     }
 
@@ -170,7 +175,7 @@
 
     &-time-icon {
       position: absolute;
-      left: 8px;
+      margin-left: -20px;
       top: -4px;
       font-size: 40%;
     }

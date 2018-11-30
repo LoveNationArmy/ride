@@ -69,10 +69,9 @@ export default class OfferForm extends Component {
             <Icon value='🚌' active={offer.vehicle.includes('bus')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'bus ' } })} />
             <Icon value='🚵' active={offer.vehicle.includes('bicycle')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'bicycle ' } })} />
             <Icon value='⛵' active={offer.vehicle.includes('boat')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'boat ' } })} />
-            &nbsp;
             <input name='vehicle' value={offer.vehicle} onChange={this.handleInputChange} placeholder='vehicle' required />
+            <input name='capacity' type='number' value={offer.capacity} onChange={this.handleInputChange} required /><Icon value='웃' />
           </Label>
-          <Label><input name='capacity' type='number' value={offer.capacity} onChange={this.handleInputChange} required /><Icon value='웃' /></Label>
         </Fieldset>
 
         <Fieldset dual>
