@@ -2,8 +2,15 @@ import React, { Component } from 'react'
 import Icon from '../Icon'
 import './style.scss'
 
-const Fieldset = ({ className, children }) =>
-  <div className={['fieldset', className].filter(Boolean).join(' ')}>{children}</div>
+const Fieldset = ({ dual, className, children }) =>
+  <div className={[
+    'fieldset',
+    className,
+    dual && 'dual'
+  ].filter(Boolean).join(' ')}><div className='fieldset-inner'>{children}</div></div>
+
+const Label = ({ children }) =>
+  <div className='label'><label>{children}</label></div>
 
 let formState = {
   offer: {
@@ -12,7 +19,7 @@ let formState = {
     departure: '',
     arrival: '',
     vehicle: '',
-    capacity: 1,
+    capacity: '1',
     price: ''
   }
 }
@@ -55,20 +62,34 @@ export default class OfferForm extends Component {
     return (
       <form className='offer-form' onSubmit={this.handleFormSubmit}>
         <Fieldset>
-          <label><Icon value='📆' /><input autoFocus name='date' type='date' value={offer.date} onChange={this.handleInputChange} required /></label>
-          <label><input name='time' type='time' value={offer.time} onChange={this.handleInputChange} required /><Icon value='🕘' /></label>
+          <Label>
+            <Icon value='🚗' active={offer.vehicle.includes('car')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'car ' } })} />
+            <Icon value='🛵' active={offer.vehicle.includes('bike')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'bike ' } })} />
+            <Icon value='🚐' active={offer.vehicle.includes('van')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'van ' } })} />
+            <Icon value='🚌' active={offer.vehicle.includes('bus')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'bus ' } })} />
+            <Icon value='🚵' active={offer.vehicle.includes('bicycle')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'bicycle ' } })} />
+            <Icon value='⛵' active={offer.vehicle.includes('boat')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'boat ' } })} />
+            &nbsp;
+            <input name='vehicle' value={offer.vehicle} onChange={this.handleInputChange} placeholder='vehicle' required />
+          </Label>
+          <Label><input name='capacity' type='number' value={offer.capacity} onChange={this.handleInputChange} required /><Icon value='웃' /></Label>
         </Fieldset>
-        <Fieldset>
-          <label><Icon value='🚀' /><input name='departure' value={offer.departure} onChange={this.handleInputChange} placeholder='departure' required /></label>
-          <label><input name='arrival' value={offer.arrival} onChange={this.handleInputChange} placeholder='arrival' required /><Icon value='⛱' /></label>
+
+        <Fieldset dual>
+          <Label><Icon value='📆' /><input autoFocus name='date' type='date' value={offer.date} onChange={this.handleInputChange} required /></Label>
+          <Label><input name='time' type='time' value={offer.time} onChange={this.handleInputChange} required /><Icon value='🕘' /></Label>
         </Fieldset>
-        <Fieldset>
-          <label><Icon value='🚗' /><input name='vehicle' value={offer.vehicle} onChange={this.handleInputChange} placeholder='vehicle' required /></label>
-          <label><input name='capacity' type='number' value={offer.capacity} onChange={this.handleInputChange} required /><Icon value='웃' /></label>
+
+        <Fieldset dual>
+          <Label><Icon value='🚀' /><input name='departure' value={offer.departure} onChange={this.handleInputChange} placeholder='everywhere' /></Label>
+          <Label><input name='arrival' value={offer.arrival} onChange={this.handleInputChange} placeholder='anywhere' /><Icon value='⛱' /></Label>
         </Fieldset>
+
         <Fieldset className='offer-form-price'>
-          <label><Icon value='🎈' /><span className='per-person'>/웃</span><input name='price' value={offer.price} onChange={this.handleInputChange} placeholder='cost per 웃' required /></label>
-          <button type='submit'><Icon value='🚀' /> make offer</button>
+          <Label>
+            <Icon value='🎈' /><input name='price' value={offer.price} onChange={this.handleInputChange} placeholder={'what\'s about'} required />
+            <button type='submit'><Icon value='🚀' /> make offer</button>
+          </Label>
         </Fieldset>
       </form>
     )

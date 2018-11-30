@@ -7,6 +7,7 @@
   "dependencies": {
     "@craco/craco": "^3.1.1",
     "@ride/stigma": "^0.1.0",
+    "@ride/models": "^0.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "flow-runtime": "^0.17.0",
@@ -17,9 +18,11 @@
     "react-scripts": "^2.1.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "babel-plugin-flow-runtime": "^0.17.0",
     "dotenv": "^6.1.0",
     "dotenv-cli": "^1.4.0",
+    "eslint-config-react-app": "^3.0.5",
     "fetch-mock": "^7.2.2",
     "now": "^12.1.3"
   },

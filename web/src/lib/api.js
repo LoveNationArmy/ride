@@ -2,16 +2,16 @@ type Response = {
   text: Function
 }
 
-type JSONResponse = {
+type ResponseJSONBody = {
   error?: string
 }
 
 const handle = async (res: Response) => {
   const body = await res.text()
   try {
-    var json: JSONResponse = JSON.parse(body)
+    var json: ResponseJSONBody = JSON.parse(body)
   } catch (error) {
-    throw new Error(body + `\nCaptured error was: ${error.message}`)
+    throw new Error(body + `\nCaptured error was: ${error.stack}`)
   }
   if (json.error) throw new Error(json.error)
   else return json

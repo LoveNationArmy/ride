@@ -1,4 +1,5 @@
 module.exports = (context, state) => {
+  state.context = context
   state.update = () => context.setState(context.state)
   state.queries = effects(context, state.queries)
   state.mutations = effects(context, state.mutations)

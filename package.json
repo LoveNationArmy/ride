@@ -30,7 +30,7 @@
     "babel-eslint": "^9.0.0"
   },
   "scripts": {
-    "clean": "rm -rf node_modules yarn.lock web/node_modules api/node_modules",
+    "clean": "rm -rf node_modules yarn.lock web/node_modules api/node_modules modules/**/node_modules",
     "api:start": "yarn workspace @ride/api start",
     "api:dev": "yarn workspace @ride/api dev",
     "api:deploy": "cp yarn.lock api/ && yarn workspace @ride/api deploy",

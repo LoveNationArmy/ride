@@ -4,7 +4,7 @@ import { CSRF_TOKEN, FACEBOOK } from '../../lib/env'
 import './style.scss'
 
 export default class Login extends Component {
-  receiveMessage = (e) => {
+  receiveMessage = async (e) => {
     const { queries } = this.props
 
     if (e.data.source !== 'login') return
@@ -20,10 +20,18 @@ export default class Login extends Component {
       throw new Error('Facebook login failed')
     }
 
-    queries.login(params.get('code'))
+    await queries.login(params.get('code'))
+
+    if (this.callback) {
+      try {
+        return this.callback()
+      } catch (error) {
+        console.error('callback error', error.stack, this.callback)
+      }
+    }
   }
 
-  login = () => {
+  login = (callback) => {
     const params = new URLSearchParams({
       client_id: FACEBOOK.APP_ID,
       redirect_uri: FACEBOOK.LOGIN_REDIRECT_URI,
@@ -31,6 +39,8 @@ export default class Login extends Component {
     })
 
     window.open(`${FACEBOOK.OAUTH_URI}?${params}`, 'facebook-login')
+
+    this.callback = callback
   }
 
   componentDidMount () {
@@ -42,10 +52,12 @@ export default class Login extends Component {
   }
 
   render () {
-    const { data, mutations } = this.props
+    const { context, data, mutations } = this.props
+
+    context.login = this
 
     return !data.user
-      ? <button className='login-button' onClick={this.login}>
+      ? <button ref='login' className='login-button' onClick={this.login}>
           Enter using Facebook
       </button>
       : <div className='login'>

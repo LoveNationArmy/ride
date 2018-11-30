@@ -13,6 +13,8 @@ export default ({ data, queries, mutations }) =>
     onMouseDown={stop(() => mutations.setUserMenu(false))}
     className='user-menu-overlay'>
     <div className='user-menu'>
-      <div onTouchStart={queries.logout}>Logout</div>
+      <div
+        onTouchStart={queries.logout}
+        onMouseDown={queries.logout}>Logout</div>
     </div>
   </div>

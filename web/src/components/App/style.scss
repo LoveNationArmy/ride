@@ -5,8 +5,32 @@
   box-shadow: 0 0 50px rgba(0,0,0,.24);
 }
 
+.loading {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  font-size: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  cursor: not-allowed;
+  background: rgba(0,0,0,.1);
+
+  span {
+    background: #e54;
+    color: #fff;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
 .hidden {
   opacity: 0;
+  pointer-events: none;
 }
 
 /* smartphones, iPhone, portrait 480x320 phones */

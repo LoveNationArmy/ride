@@ -14,6 +14,8 @@ router.get('/queries/login', queries.login)
 // mutations
 router.post('/mutations/resetState', auth('admin'), state, mutations.resetState)
 router.post('/mutations/addOffer', auth(), json(), state, mutations.addOffer)
+router.post('/mutations/sayHi', auth(), json(), state, mutations.sayHi)
+router.post('/mutations/cancelHi', auth(), json(), state, mutations.cancelHi)
 
 // error handling
 router.use((error, req, res, next) => {
