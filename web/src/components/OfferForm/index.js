@@ -61,7 +61,7 @@ export default class OfferForm extends Component {
 
     return (
       <form className='offer-form' onSubmit={this.handleFormSubmit}>
-        <Fieldset>
+        <Fieldset className='offer-form-vehicle'>
           <Label>
             <Icon value='🚗' active={offer.vehicle.includes('car')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'car ' } })} />
             <Icon value='🛵' active={offer.vehicle.includes('bike')} onClick={() => this.setState({ offer: { ...offer, vehicle: 'bike ' } })} />
