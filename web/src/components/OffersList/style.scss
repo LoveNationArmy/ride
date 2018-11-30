@@ -148,6 +148,7 @@
 
     &-pending {
       color: #f95;
+      text-align: center;
       font-style: italic;
     }
 
@@ -183,9 +184,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 12px 2px;
-        margin-left: 10px;
+        padding: 10px 12px;
         text-align: center;
+        line-height: 1em;
 
         .icon {
           font-size: 24px;
