@@ -19,10 +19,10 @@ export default ({ data, mutations }) =>
       .map((offer: Offer, index) => {
         let actions
 
-        const sayHi = <button onClick={() => mutations.sayHi(offer)}><Icon value='👋' /> say&nbsp;hi</button>
-        const endOffer = <button onClick={() => mutations.endOffer(offer)}><Icon value='🏁' /> end</button>
-        const cancelHi = <div className='offer-item-pending'>pending... <button onClick={() => mutations.cancelHi(offer)}><Icon value='❌' /> cancel</button></div>
-        const viewOffer = <button onClick={() => mutations.setScreen('offer', offer.id)}><Icon value='🔦' /> view</button>
+        const sayHi = <a onClick={() => mutations.sayHi(offer)}><Icon value='👋' /><span>say&nbsp;hi</span></a>
+        const endOffer = <a onClick={() => mutations.endOffer(offer)}><Icon value='🏁' /><span>end</span></a>
+        const cancelHi = <div className='offer-item-pending'><span>pending...</span><a onClick={() => mutations.cancelHi(offer)}><Icon value='❌' /><span>cancel</span></a></div>
+        const viewOffer = <a onClick={() => mutations.setScreen('offer', offer.id)}><Icon value='🔦' /><span>view</span></a>
 
         const pending = offer.joined
           .filter((user: OfferJoinedUser) => user.status === 'pending')
@@ -33,8 +33,8 @@ export default ({ data, mutations }) =>
                 <p>{user.name}<br />says hi <Icon value='👋' /></p>
               </div>
               <div className='offer-item-joined-actions'>
-                <button><Icon value='✅' /> accept</button>
-                <button><Icon value='❌' /> decline</button>
+                <a><Icon value='✅' /><span>accept</span></a>
+                <a><Icon value='❌' /><span>decline</span></a>
               </div>
             </div>
           ))
