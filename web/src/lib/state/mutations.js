@@ -1,7 +1,8 @@
 import { withLoading, withUser } from './utils'
 import {
   Offer,
-  OfferPost
+  OfferPost,
+  OfferJoinedUser
 } from './models'
 
 export default {
@@ -26,6 +27,13 @@ export default {
   })),
   cancelHi: withLoading(async ({ data, api }, offer: Offer) => {
     Object.assign(offer, await api.mutation('cancelHi', offer))
+  }),
+  handleJoinRequest: withLoading(async ({ data, api }, status, offer: Offer, user: OfferJoinedUser) => {
+    Object.assign(offer, await api.mutation('handleJoinRequest', {
+      offerId: offer.id,
+      userId: user.id,
+      status
+    }))
   }),
   setScreen: ({ data }, screen: string) => {
     data.ui.screen = screen

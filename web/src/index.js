@@ -9,7 +9,19 @@ import './index.scss'
 
 const app = ReactDOM.render(
   <App
-    api={api({ url: env.API_SERVER_URI })}
+    api={api({ url: env.API_SERVER_URI, fetch: (...params) => {
+      return new Promise(resolve => {
+        const beginTime = Date.now()
+        window.fetch(...params).then((res) => {
+          const diffTime = 450 - (Date.now() - beginTime)
+          if (diffTime > 0) {
+            setTimeout(resolve, diffTime, res)
+          } else {
+            resolve(res)
+          }
+        })
+      })
+    }})}
     state={state()}
   />,
   document.getElementById('root')

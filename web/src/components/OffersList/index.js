@@ -1,5 +1,6 @@
 import React from 'react'
 import Icon from '../Icon'
+import IconButton from '../IconButton'
 import { Offer, OfferJoinedUser } from '../../lib/state/models'
 import relativeTime from '../../lib/relative-time'
 import './style.scss'
@@ -19,10 +20,12 @@ export default ({ data, mutations }) =>
       .map((offer: Offer, index) => {
         let actions
 
-        const sayHi = <a onClick={() => mutations.sayHi(offer)}><Icon value='👋' /><span>say&nbsp;hi</span></a>
-        const endOffer = <a onClick={() => mutations.endOffer(offer)}><Icon value='🏁' /><span>end</span></a>
-        const cancelHi = <div className='offer-item-pending'><span>pending...</span><a onClick={() => mutations.cancelHi(offer)}><Icon value='❌' /><span>cancel</span></a></div>
-        const viewOffer = <a onClick={() => mutations.setScreen('offer', offer.id)}><Icon value='🔦' /><span>view</span></a>
+        const sayHi = <IconButton value='👋' onClick={() => mutations.sayHi(offer)}>say&nbsp;hi</IconButton>
+        const endOffer = <IconButton value='🏁' onClick={() => mutations.endOffer(offer)}>end</IconButton>
+        const cancelHi = <div className='offer-item-pending'><span>pending...</span>
+          <IconButton value='❌' onClick={() => mutations.cancelHi(offer)}>cancel</IconButton>
+        </div>
+        const viewOffer = <IconButton value='🔦' onClick={() => mutations.setScreen('offer', offer.id)}>view</IconButton>
 
         const pending = offer.joined
           .filter((user: OfferJoinedUser) => user.status === 'pending')
@@ -33,8 +36,36 @@ export default ({ data, mutations }) =>
                 <p>{user.name}<br />says hi <Icon value='👋' /></p>
               </div>
               <div className='offer-item-joined-actions'>
-                <a><Icon value='✅' /><span>accept</span></a>
-                <a><Icon value='❌' /><span>decline</span></a>
+                <IconButton value='✅' onClick={() => mutations.handleJoinRequest('accepted', offer, user)}>accept</IconButton>
+                <IconButton value='❌' onClick={() => mutations.handleJoinRequest('declined', offer, user)}>decline</IconButton>
+              </div>
+            </div>
+          ))
+
+        const joined = offer.joined
+          .filter((user: OfferJoinedUser) => user.status === 'accepted')
+          .map((user: OfferJoinedUser, index) => (
+            <div className='offer-item-joined' key={index}>
+              <div className='offer-item-joined-user'>
+                <img className='offer-item-joined-avatar' src={user.avatar} />
+                <p>{user.name}<br />is onboard <Icon value='🎒' /></p>
+              </div>
+              <div className='offer-item-joined-actions'>
+                <IconButton value='🥾' onClick={() => mutations.handleJoinRequest('pending', offer, user)}>kick</IconButton>
+              </div>
+            </div>
+          ))
+
+        const declined = offer.joined
+          .filter((user: OfferJoinedUser) => user.status === 'declined')
+          .map((user: OfferJoinedUser, index) => (
+            <div className='offer-item-joined' key={index}>
+              <div className='offer-item-joined-user'>
+                <img className='offer-item-joined-avatar' src={user.avatar} />
+                <p>{user.name}<br />declined <Icon value='😿' /></p>
+              </div>
+              <div className='offer-item-joined-actions'>
+                <IconButton value='💫' onClick={() => mutations.handleJoinRequest('pending', offer, user)}>retry</IconButton>
               </div>
             </div>
           ))
@@ -120,7 +151,12 @@ export default ({ data, mutations }) =>
                 {actions.map((action, index) => <div key={index}>{action}</div>)}
               </div>
             </div>
+
             {data.user && data.user.id === offer.user.id && pending.length > 0 ? pending : null}
+
+            {data.user && data.user.id === offer.user.id && joined.length > 0 ? joined : null}
+
+            {data.user && data.user.id === offer.user.id && declined.length > 0 ? declined : null}
           </div>
         )
       })

@@ -6,7 +6,7 @@
   font-family: sans-serif;
   font-size: 14px;
 
-  a {
+  .icon-button {
     color: #aa9;
 
     &:hover {
@@ -68,7 +68,7 @@
         top: 1px;
       }
 
-      a {
+      .icon-button {
         position: relative;
         display: flex;
         flex-flow: column nowrap;
@@ -80,8 +80,6 @@
         margin-top: 3px;
         margin-bottom: 3px;
         float: left;
-        span {
-        }
       }
     }
 
@@ -180,7 +178,7 @@
     }
 
     &-actions {
-      a {
+      .icon-button {
         display: flex;
         align-items: center;
         justify-content: center;

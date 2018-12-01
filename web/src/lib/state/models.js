@@ -28,6 +28,6 @@ export type Offer = {|
 |}
 
 export type OfferJoinedUser = {|
-  status: 'pending' | 'cancelled',
+  status: 'pending' | 'cancelled' | 'accepted' | 'declined',
   ...User
 |}

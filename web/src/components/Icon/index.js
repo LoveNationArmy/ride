@@ -16,7 +16,7 @@ export default ({
   strong,
   onClick
 }) => {
-  onClick = stop(onClick)
+  onClick = onClick ? stop(onClick) : null
   return <span
     onTouchStart={onClick}
     onMouseDown={onClick}

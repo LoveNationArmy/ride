@@ -32,7 +32,7 @@ exports.sayHi = async (req, res) => {
   const offer = state.offers.find(offer => offer.id === id)
 
   if (req.user.id === offer.user.id) {
-    return res.status(409).json({ error: 'cannot sayHi on own rides' })
+    return res.status(409).json({ error: 'sayHi: cannot use on own rides' })
   }
 
   let joinedUser = offer.joined.find((user) => user.id === req.user.id)
@@ -60,6 +60,23 @@ exports.cancelHi = async (req, res) => {
 
   let joinedUser = offer.joined.find((user) => user.id === req.user.id)
   joinedUser.status = 'cancelled'
+  await req.state.save()
+  res.json(offer)
+}
+
+exports.handleJoinRequest = async (req, res) => {
+  const offerId = req.body.offerId
+  const userId = req.body.userId
+  const status = req.body.status
+  const state = await req.state.get()
+  const offer = state.offers.find(offer => offer.id === offerId)
+
+  if (offer.user.id !== req.user.id) {
+    return res.status(403).json({ error: 'handleJoinRequest: can only handle own rides' })
+  }
+
+  let joinedUser = offer.joined.find((user) => user.id === userId)
+  joinedUser.status = status
   await req.state.save()
   res.json(offer)
 }
