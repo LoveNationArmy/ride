@@ -224,27 +224,34 @@
       font-size: 20px;
 
       &-figures {
-        margin: 0 auto;
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
+        display: block !important;
+        text-align: left !important;
+        min-width: 68% !important;
+        line-height: 1em;
+        margin-top: 10px;
+
         &-group {
-          white-space: nowrap;
-          display: flex;
-          flex-flow: row nowrap;
-          justify-content: center;
+          display: inline-block !important;
+          height: 40px;
+        }
+
+        .multi-row {
+          // display: none;
+          .figures-group {
+            width: 10px;
+            display: none;
+          }
+        }
+
+        &-row {
+          // display: block !important;
+
         }
       }
 
       > * {
         text-align: center;
         padding: 0 8px;
-      }
-
-      &-figures {
-        line-height: 1em;
-        margin-top: 10px;
       }
     }
 
@@ -275,8 +282,11 @@
 
   .person {
     font-size: 19px;
-    transform: rotate(-90deg);
     padding-left: 1px;
     margin-bottom: -5px;
+  }
+
+  .multi-row .person {
+    transform: rotate(-90deg);
   }
 }

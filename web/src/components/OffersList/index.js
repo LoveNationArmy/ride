@@ -28,44 +28,26 @@ export default ({ data, mutations }) =>
         const viewOffer = <IconButton value='🔦' onClick={() => mutations.setScreen('offer', offer.id)}>view</IconButton>
 
         const pending = offer.joined
-          .filter((user: OfferJoinedUser) => user.status === 'pending')
+          .filter((user: OfferJoinedUser) => user.status !== 'cancelled')
           .map((user: OfferJoinedUser, index) => (
             <div className='offer-item-joined' key={index}>
               <div className='offer-item-joined-user'>
                 <img className='offer-item-joined-avatar' src={user.avatar} />
-                <p>{user.name}<br />says hi <Icon value='👋' /></p>
+                {user.status === 'pending' && <p>{user.name}<br />says hi <Icon value='👋' /></p>}
+                {user.status === 'accepted' && <p>{user.name}<br />is onboard <Icon value='🎒' /></p>}
+                {user.status === 'declined' && <p>{user.name}<br />declined <Icon value='😿' /></p>}
               </div>
               <div className='offer-item-joined-actions'>
-                <IconButton value='✅' onClick={() => mutations.handleJoinRequest('accepted', offer, user)}>accept</IconButton>
-                <IconButton value='❌' onClick={() => mutations.handleJoinRequest('declined', offer, user)}>decline</IconButton>
-              </div>
-            </div>
-          ))
-
-        const joined = offer.joined
-          .filter((user: OfferJoinedUser) => user.status === 'accepted')
-          .map((user: OfferJoinedUser, index) => (
-            <div className='offer-item-joined' key={index}>
-              <div className='offer-item-joined-user'>
-                <img className='offer-item-joined-avatar' src={user.avatar} />
-                <p>{user.name}<br />is onboard <Icon value='🎒' /></p>
-              </div>
-              <div className='offer-item-joined-actions'>
-                <IconButton value='🥾' onClick={() => mutations.handleJoinRequest('pending', offer, user)}>kick</IconButton>
-              </div>
-            </div>
-          ))
-
-        const declined = offer.joined
-          .filter((user: OfferJoinedUser) => user.status === 'declined')
-          .map((user: OfferJoinedUser, index) => (
-            <div className='offer-item-joined' key={index}>
-              <div className='offer-item-joined-user'>
-                <img className='offer-item-joined-avatar' src={user.avatar} />
-                <p>{user.name}<br />declined <Icon value='😿' /></p>
-              </div>
-              <div className='offer-item-joined-actions'>
-                <IconButton value='💫' onClick={() => mutations.handleJoinRequest('pending', offer, user)}>retry</IconButton>
+                {user.status === 'pending' && [
+                  <IconButton value='✅' onClick={() => mutations.handleJoinRequest('accepted', offer, user)}>accept</IconButton>,
+                  <IconButton value='❌' onClick={() => mutations.handleJoinRequest('declined', offer, user)}>decline</IconButton>
+                ]}
+                {user.status === 'accepted' && [
+                  <IconButton value='🥾' onClick={() => mutations.handleJoinRequest('pending', offer, user)}>kick</IconButton>
+                ]}
+                {user.status === 'declined' && [
+                  <IconButton value='💫' onClick={() => mutations.handleJoinRequest('pending', offer, user)}>retry</IconButton>
+                ]}
               </div>
             </div>
           ))
@@ -129,15 +111,27 @@ export default ({ data, mutations }) =>
             <div className='offer-item-bottom'>
               <div className='offer-item-people-figures'>
                 {(() => {
-                  let now = offer.joined.filter(user => user.status !== 'cancelled').length + 1
+                  let now = offer.joined.filter(user => user.status !== 'cancelled' && user.status !== 'declined').length + 1
                   let x = []
                   return times(offer.capacity, (i, arr) => <div key={i} className={(--now > 0 ? 'active' : 'inactive') + ' person'}><Icon value='💺' /></div>)
                     .reduce((p, n, i, arr) => {
-                      if (x.length + 1 >= arr.length / (arr.length > 10 ? 4 : 2) || i === arr.length - 1) {
+                      const c = offer.capacity
+                      if (x.length + 1 >= (c <= 10 ? 1 : 2) || i === arr.length - 1) {
                         x.push(n)
                         p.push(<div className='offer-item-people-figures-group' key={i}>{x}</div>)
                         x = []
-                        if (2 % (p.length - 1) === 0) p.push(<div key={i * 100} style={{ height: '8px' }}>&nbsp;</div>)
+                        return p
+                      } else {
+                        x.push(n)
+                        return p
+                      }
+                    }, [])
+                    .reduce((p, n, i, arr) => {
+                      const c = offer.capacity
+                      if (x.length + 1 >= c / (c > 50 ? 8 : c > 10 ? 4 : 1) || i === arr.length - 1) {
+                        x.push(n)
+                        p.push(<div className={`offer-item-people-figures-row ${c > 10 ? 'multi-row' : ''}`} key={i}>{x}</div>)
+                        x = []
                         return p
                       } else {
                         x.push(n)
@@ -153,10 +147,6 @@ export default ({ data, mutations }) =>
             </div>
 
             {data.user && data.user.id === offer.user.id && pending.length > 0 ? pending : null}
-
-            {data.user && data.user.id === offer.user.id && joined.length > 0 ? joined : null}
-
-            {data.user && data.user.id === offer.user.id && declined.length > 0 ? declined : null}
           </div>
         )
       })
