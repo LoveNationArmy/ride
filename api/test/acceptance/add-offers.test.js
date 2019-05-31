@@ -61,16 +61,22 @@ expected.offers = [
   {
     id: '2018-10-15/0930/xania/soygia/hyundai-accent-xnz-3423',
     user: expected.user,
+    status: 'created',
+    joined: [],
     ...fixture.offers[0]
   },
   {
     id: '2018-10-15/1230/xania/palaioxwra/fiat-punto-xna-5657',
     user: expected.user,
+    status: 'created',
+    joined: [],
     ...fixture.offers[1]
   },
   {
     id: '2018-10-18/1830/soygia/xania/hyundai-accent-xnz-3423',
     user: expected.user,
+    status: 'created',
+    joined: [],
     ...fixture.offers[2]
   }
 ]

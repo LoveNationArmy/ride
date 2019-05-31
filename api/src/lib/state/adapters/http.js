@@ -1,3 +1,4 @@
+const debug = require('debug')('api:lib:state:adapters:http')
 let fetch = require('node-fetch')
 
 if (fetch.default) fetch = fetch.default
@@ -6,6 +7,8 @@ module.exports = ({ namespace, url, token }) => ({
   load () {
     return fetch(`${url}/${namespace}?token=${token}`).then(res => res.json()).catch(error => {
       void error
+      debug(error)
+      debug('Possible Solution: check if the State server is running')
       throw new Error('load fetch error')
     })
   },

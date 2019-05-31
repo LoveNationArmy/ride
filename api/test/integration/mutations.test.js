@@ -44,6 +44,8 @@ expected.user = {
 expected.offer = {
   id: '2018-10-15/0930/xania/soygia/hyundai-accent-xnz-3423',
   user: expected.user,
+  status: 'created',
+  joined: [],
   ...fixture.offer
 }
 

@@ -32,7 +32,10 @@ const expectedPaths = {
   ],
   post: [
     ['/mutations/resetState', 'auth admin', 'state', mutations.resetState],
-    ['/mutations/addOffer', 'auth user', 'json', 'state', mutations.addOffer]
+    ['/mutations/addOffer', 'auth user', 'json', 'state', mutations.addOffer],
+    ['/mutations/sayHi', 'auth user', 'json', 'state', mutations.sayHi],
+    ['/mutations/cancelHi', 'auth user', 'json', 'state', mutations.cancelHi],
+    ['/mutations/handleJoinRequest', 'auth user', 'json', 'state', mutations.handleJoinRequest]
   ]
 }
 
