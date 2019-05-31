@@ -15,8 +15,8 @@ describe('App', () => {
     const fixture = {
       user: { token: 'foo', id: 'foo', name: 'foo', avatar: 'foo.png' },
       offers: [
-        { id: '123', user: { id: 'foo', name: 'foo', avatar: 'foo.png' } },
-        { id: '456', user: { id: 'foo', name: 'foo', avatar: 'foo.png' } }
+        { id: '123', user: { id: 'foo', name: 'foo', avatar: 'foo.png' }, status: 'created', joined: [], vehicle: 'car', date: '2019-05-05', price: '1' },
+        { id: '456', user: { id: 'foo', name: 'foo', avatar: 'foo.png' }, status: 'created', joined: [], vehicle: 'car', date: '2019-05-05', price: '1' }
       ]
     }
     const $ = mount(<App api={api({ user: fixture.user })} state={state({ user: fixture.user })} />)
@@ -166,6 +166,8 @@ describe('offers', () => {
         time: '09:30',
         departure: 'chania',
         arrival: 'rethimno',
+        status: 'created',
+        joined: [],
         capacity: 3,
         vehicle: 'amaxi',
         price: '2 euro'
@@ -214,6 +216,8 @@ describe('offers', () => {
     const mockFetch = {
       id: '123',
       user: fixture.user,
+      status: 'created',
+      joined: [],
       ...fixture.offerToPost
     }
 
