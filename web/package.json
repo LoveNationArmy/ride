@@ -10,7 +10,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "flow-runtime": "^0.17.0",
-    "node-sass": "^4.10.0",
+    "node-sass": "^4.13.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-easy-emoji": "^1.2.0",
